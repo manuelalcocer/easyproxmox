@@ -41,7 +41,7 @@ def CogerToken():
     proxhome.FetchCreds()
     #proxhome.FetchNodeList()
 
-    return variable
+    return 'nothing'
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
