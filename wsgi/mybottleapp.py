@@ -1,11 +1,15 @@
 
-from bottle import route, default_app, template
+from bottle import route, default_app, template, static_file
 
 #from datacenter import DataCenter as MyDataCenter
 
 @route('/')
 def index():
     return template('index.html')
+
+@route('/static/<filepath:path>')
+def server_static(filepath):
+    return static_file(filepath, root=os.environ['OPENSHIFT_REPO_DIR']+'static/')
 
 # This must be added in order to do correct path lookups for the views
 import os
