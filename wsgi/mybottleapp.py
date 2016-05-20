@@ -5,7 +5,7 @@ from bottle import route, default_app, template, static_file
 
 @route('/')
 def index():
-    return template('index.html')
+    return template('login.html')
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
