@@ -22,5 +22,8 @@ class DataCenter:
         self.NodePath = self.api_root + '/nodes'
         self.json_nodelist = json.loads(requests.get(self.NodePath, cookies = self.creds['cookie']).text)
 
+    def Prueba(self):
+        return 'holahola'
+
 if __name__ == '__main__':
     Main()

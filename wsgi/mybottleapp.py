@@ -20,7 +20,8 @@ def CogerToken():
     #proxhome.FetchCreds()
     #proxhome.FetchNodeList()
 
-    return proxhome.creds['username']
+    variable = proxhome.Prueba()
+    return variable
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
