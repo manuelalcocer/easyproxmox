@@ -1,16 +1,36 @@
-from bottle import route, default_app
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
 
-@route('/name/<name>')
-def nameindex(name='Stranger'):
-    return '<strong>Hello, %s!</strong>' % name
- 
+from bottle import request, route, default_app, template, static_file, response, run
+import json
+import requests
+
+#from datacenter import DataCenter as MyDataCenter
+
 @route('/')
 def index():
-    return '<strong>Hello World!</strong>'
+    return template('login.html')
+
+#@route('/fetchtoken', method='POST')
+#def CogerToken():
+#    proxhome = MyDataCenter('nashgul')
+#    proxhome.https_url = 'https://proxmox.nashgul.com.es'
+#    proxhome.api_address = '/api2/json'
+#    proxhome.api_ticket = '/access/ticket'
+#    proxhome.creds['username'] = request.forms.get('username')
+#    proxhome.creds['password'] = request.forms.get('password')
+
+#    proxhome.FetchCreds()
+#    proxhome.FetchNodeList()
+
+#    return proxhome.json_nodelist['data'][0]['node']
+
+@route('/static/<filepath:path>')
+def server_static(filepath):
+    return static_file(filepath, root=os.environ['OPENSHIFT_REPO_DIR']+'static/')
 
 # This must be added in order to do correct path lookups for the views
 import os
 from bottle import TEMPLATE_PATH
-TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi/views/')) 
-
+TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi/views/'))
 application=default_app()

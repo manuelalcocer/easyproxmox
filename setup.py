@@ -1,10 +1,10 @@
 from setuptools import setup
 
-setup(name='YourAppName',
+setup(name='easyproxmox',
       version='1.0',
-      description='OpenShift App',
-      author='Your Name',
-      author_email='example@example.com',
-      url='http://www.python.org/sigs/distutils-sig/',
+      description='proxmox webhelper',
+      author='Manuel Alcocer',
+      author_email='m.alcocer1978@gmail.com',
+      url='https://easyproxmox-alcocer.rhcloud.com/',
       install_requires=['bottle'],
      )
