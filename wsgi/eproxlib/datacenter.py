@@ -1,7 +1,7 @@
 import json
-import requests
-import psycopg2
 import os
+import psycopg2
+import requests
 
 class DataBase:
     def __init__(self, dbname):
