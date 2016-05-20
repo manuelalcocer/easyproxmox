@@ -3,7 +3,7 @@ import requests
 import psycopg2
 
 class DataBase:
-    def __ini__(self, dbname):
+    def __init__(self, dbname):
         self.dbname = dbname
         self.dbuser = os.environ['OPENSHIFT_POSTGRESQL_DB_USERNAME']
         self.dbpassword = os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD']
