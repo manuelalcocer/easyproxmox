@@ -3,11 +3,25 @@ from bottle import route, default_app, template, static_file
 import json
 import requests
 
-#from datacenter import DataCenter as MyDataCenter
+from eproxlib.datacenter import DataCenter as MyDataCenter
 
 @route('/')
 def index():
     return template('login.html')
+
+@route('/fetchtoken', method='POST')
+def CogerToken():
+    proxhome = MyDataCenter('nashgul')
+    proxhome.https_url = 'https://proxmox.nashgul.com.es'
+    proxhome.api_address = '/api2/json'
+    proxhome.api_ticket = '/access/ticket'
+    proxhome.creds['username'] = request.forms.get('username')
+    proxhome.creds['password'] = request.forms.get('password')
+
+    proxhome.FetchCreds()
+    proxhome.FetchNodeList()
+
+    return proxhome.json_nodelist['data'][0]['node']
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
