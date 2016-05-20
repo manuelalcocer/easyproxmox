@@ -1,10 +1,6 @@
 
 from bottle import route, default_app
 
-from bottle import request, route, default_app, template, static_file, response
-import json
-import requests
-
 #from datacenter import DataCenter as MyDataCenter
 
 @route('/')
