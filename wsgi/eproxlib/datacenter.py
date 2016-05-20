@@ -1,0 +1,39 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+
+from bottle import request, route, default_app, template, static_file, response
+import json
+import requests
+import sqlite3
+
+class DataCenter:
+    def __init__(self, id_name):
+        self.id_name = id_name
+        self.https_url = ''
+        self.api_address = ''
+        self.api_ticket = ''
+        self.creds = {}
+
+    def FetchCreds(self):
+        parameters_list = { 'username' : self.creds['username'] + '@pam', 'password' : self.creds['password'] }
+        self.api_root = self.https_url + self.api_address
+        self.creds_response = requests.post(self.api_root + self.api_ticket, params = parameters_list)
+        self.json_creds = json.loads(self.creds_response.text)
+        self.creds['cookie'] = { 'PVEAuthCookie' : self.json_creds['data']['ticket'] }
+        self.creds['header'] = { 'CSRFPreventionToken' : self.json_creds['data']['CSRFPreventionToken'] }
+        self.cookie = dict(PVEAuthCookie=self.json_creds['data']['ticket'])
+
+    def FetchNodeList(self):
+        self.NodePath = self.api_root + '/nodes'
+        self.json_nodelist = json.loads(requests.get(self.NodePath, cookies = self.creds['cookie']).text)
+
+
+class Node:
+    def __init__(self):
+        pass
+
+def Main():
+    pass
+
+if __name__ == '__main__':
+    Main()
