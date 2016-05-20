@@ -1,13 +1,15 @@
 
 from bottle import route, default_app
 
-@route('/name/<name>')
-def nameindex(name='Stranger'):
-    return '<strong>Hello, %s!</strong>' % name
+from bottle import request, route, default_app, template, static_file, response, run
+import json
+import requests
+
+#from datacenter import DataCenter as MyDataCenter
 
 @route('/')
 def index():
-    return '<strong>Hello World!</strong>'
+    return template('login.html')
 
 # This must be added in order to do correct path lookups for the views
 import os
