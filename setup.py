@@ -6,5 +6,5 @@ setup(name='easyproxmox',
       author='Manuel Alcocer',
       author_email='m.alcocer1978@gmail.com',
       url='https://easyproxmox-alcocer.rhcloud.com/',
-      install_requires=['bottle'],
+      install_requires=['bottle','requests'],
      )
