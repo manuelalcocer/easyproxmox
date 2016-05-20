@@ -1,5 +1,25 @@
 import json
 import requests
+import psycopg2
+
+class DataBase:
+    def __ini__(self, dbname):
+        self.dbname = dbname
+        self.dbuser = os.environ['OPENSHIFT_POSTGRESQL_DB_USERNAME']
+        self.dbpassword = os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD']
+        self.dbhost = os.environ['OPENSHIFT_POSTGRESQL_DB_HOST']
+        self.datacenter = {}
+
+    def CreateConn(self):
+        try:
+            self.conn = psycopg2.connect("dbname=%s user=%s host=%s password=%s" %(self.dbname, self.dbuser, self.dbhost, self.dbpassword))
+            self.cur = self.conn.cursor()
+        except:
+            pass
+
+    def Actualize(self):
+        self.cur.execute("""SELECT * from centros_de_datos""")
+        self.datacenter['list'] = self.cur.fetchall()
 
 class DataCenter:
     def __init__(self, id_name):

@@ -7,17 +7,14 @@ import requests
 import psycopg2
 
 from eproxlib.datacenter import DataCenter as MyDataCenter
+from eproxlib.datacenter import DataBase as MyDataBase
 
 @route('/')
 def index():
-    #dbname = 'easyproxmox'
-    #dbuser = 'adminrpqtdpp'
-    #dbpassword = 'RY26llyFAWLc'
-    #try:
-    #    conn = psycopg2.connect("dbname=%s user='dbuser' host='localhost' password='dbpass'")
-    #except:
-    #    print "I am unable to connect to the database"
-    return template('main.html')
+    proxdb = MyDataBase('easyproxmox')
+    proxdb.CreateConn()
+    proxdb.Actualize()
+    return template('main.html', datacenterlist = proxdb.datacenter['list'])
 
 @route('/fetchtoken', method='POST')
 def CogerToken():
@@ -31,11 +28,7 @@ def CogerToken():
     proxhome.FetchCreds()
     proxhome.FetchNodeList()
 
-    #return proxhome.json_nodelist['data'][0]['node']
-    longitud1 = str(len(proxhome.creds['cookie']['PVEAuthCookie']))
-    longitud2 = str(len(proxhome.creds['header']['CSRFPreventionToken']))
-    concatenado = longitud1 + ' : ' + longitud2
-    return concatenado
+    return proxhome.json_nodelist['data'][0]['node']
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
