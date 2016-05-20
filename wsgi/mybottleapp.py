@@ -25,9 +25,9 @@ def index():
 
 #    return proxhome.json_nodelist['data'][0]['node']
 
-@route('/static/<filepath:path>')
-def server_static(filepath):
-    return static_file(filepath, root=os.environ['OPENSHIFT_REPO_DIR']+'static/')
+#@route('/static/<filepath:path>')
+#def server_static(filepath):
+#    return static_file(filepath, root=os.environ['OPENSHIFT_REPO_DIR']+'static/')
 
 # This must be added in order to do correct path lookups for the views
 import os
