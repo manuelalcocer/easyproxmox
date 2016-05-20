@@ -1,7 +1,7 @@
 
 from bottle import route, default_app, template, static_file
 import json
-#import requests
+import requests
 
 #from datacenter import DataCenter as MyDataCenter
 
