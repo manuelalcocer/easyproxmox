@@ -1,4 +1,4 @@
-from bottle import route, default_app, template, static_file
+from bottle import route, default_app, template, static_file, request
 import json
 import requests
 
@@ -14,8 +14,8 @@ def CogerToken():
     proxhome.https_url = 'https://proxmox.nashgul.com.es'
     proxhome.api_address = '/api2/json'
     proxhome.api_ticket = '/access/ticket'
-    #proxhome.creds['username'] = request.forms.get('username')
-    #proxhome.creds['password'] = request.forms.get('password')
+    proxhome.creds['username'] = request.forms.get('username')
+    proxhome.creds['password'] = request.forms.get('password')
 
     #proxhome.FetchCreds()
     #proxhome.FetchNodeList()
