@@ -17,10 +17,10 @@ def CogerToken():
     proxhome.creds['username'] = request.forms.get('username')
     proxhome.creds['password'] = request.forms.get('password')
 
-    proxhome.FetchCreds()
+    #proxhome.FetchCreds()
     #proxhome.FetchNodeList()
 
-    return 'hola'
+    return proxhome.creds['username']
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
