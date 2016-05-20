@@ -8,8 +8,7 @@ def index():
     proxdb = MyDataBase('easyproxmox')
     proxdb.CreateConn()
     proxdb.Actualize()
-    return proxdb.dbname, proxdb.dbuser
-    #return template('main.html', datacenterlist = proxdb.datacenter['list'])
+    return template('main.html', datacenterlist = proxdb.datacenter['list'])
 
 @route('/fetchtoken', method='POST')
 def CogerToken():
