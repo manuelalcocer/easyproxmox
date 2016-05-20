@@ -1,7 +1,3 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-
-from bottle import request, route, default_app, template, static_file, response
 import json
 import requests
 
