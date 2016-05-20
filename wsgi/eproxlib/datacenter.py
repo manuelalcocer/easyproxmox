@@ -4,7 +4,6 @@
 from bottle import request, route, default_app, template, static_file, response
 import json
 import requests
-import sqlite3
 
 class DataCenter:
     def __init__(self, id_name):
