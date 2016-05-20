@@ -11,16 +11,17 @@ def index():
 @route('/fetchtoken', method='POST')
 def CogerToken():
     proxhome = MyDataCenter('nashgul')
-    proxhome.https_url = 'https://proxmox.nashgul.com.es'
-    proxhome.api_address = '/api2/json'
-    proxhome.api_ticket = '/access/ticket'
-    proxhome.creds['username'] = request.forms.get('username')
-    proxhome.creds['password'] = request.forms.get('password')
+    #proxhome.https_url = 'https://proxmox.nashgul.com.es'
+    #proxhome.api_address = '/api2/json'
+    #proxhome.api_ticket = '/access/ticket'
+    #proxhome.creds['username'] = request.forms.get('username')
+    #proxhome.creds['password'] = request.forms.get('password')
 
-    proxhome.FetchCreds()
-    proxhome.FetchNodeList()
+    #proxhome.FetchCreds()
+    #proxhome.FetchNodeList()
 
-    return proxhome.json_nodelist['data'][0]['node']
+    #return proxhome.json_nodelist['data'][0]['node']
+    return 'hola'
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
