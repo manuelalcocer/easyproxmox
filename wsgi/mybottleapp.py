@@ -1,5 +1,5 @@
 
-from bottle import route, default_app
+from bottle import route, default_app, template
 
 #from datacenter import DataCenter as MyDataCenter
 
