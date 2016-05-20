@@ -1,7 +1,7 @@
 
 from bottle import route, default_app
 
-from bottle import request, route, default_app, template, static_file, response, run
+from bottle import request, route, default_app, template, static_file, response
 import json
 import requests
 
@@ -9,7 +9,7 @@ import requests
 
 @route('/')
 def index():
-    return template('login.html')
+    return template('index.html')
 
 # This must be added in order to do correct path lookups for the views
 import os
