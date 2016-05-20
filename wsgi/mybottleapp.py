@@ -12,8 +12,8 @@ def index():
 def CogerToken():
     proxhome = MyDataCenter('nashgul')
     proxhome.https_url = 'https://proxmox.nashgul.com.es'
-    #proxhome.api_address = '/api2/json'
-    #proxhome.api_ticket = '/access/ticket'
+    proxhome.api_address = '/api2/json'
+    proxhome.api_ticket = '/access/ticket'
     #proxhome.creds['username'] = request.forms.get('username')
     #proxhome.creds['password'] = request.forms.get('password')
 
