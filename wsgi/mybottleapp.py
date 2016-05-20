@@ -17,7 +17,7 @@ def CogerToken():
     proxhome.creds['username'] = request.forms.get('username')
     proxhome.creds['password'] = request.forms.get('password')
 
-    #proxhome.FetchCreds()
+    proxhome.FetchCreds()
     #proxhome.FetchNodeList()
 
     variable = proxhome.Prueba()

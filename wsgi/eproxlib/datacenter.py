@@ -12,11 +12,11 @@ class DataCenter:
     def FetchCreds(self):
         parameters_list = { 'username' : self.creds['username'] + '@pam', 'password' : self.creds['password'] }
         self.api_root = self.https_url + self.api_address
-        self.creds_response = requests.post(self.api_root + self.api_ticket, params = parameters_list)
-        self.json_creds = json.loads(self.creds_response.text)
-        self.creds['cookie'] = { 'PVEAuthCookie' : self.json_creds['data']['ticket'] }
-        self.creds['header'] = { 'CSRFPreventionToken' : self.json_creds['data']['CSRFPreventionToken'] }
-        self.cookie = dict(PVEAuthCookie=self.json_creds['data']['ticket'])
+        #self.creds_response = requests.post(self.api_root + self.api_ticket, params = parameters_list)
+        #self.json_creds = json.loads(self.creds_response.text)
+        #self.creds['cookie'] = { 'PVEAuthCookie' : self.json_creds['data']['ticket'] }
+        #self.creds['header'] = { 'CSRFPreventionToken' : self.json_creds['data']['CSRFPreventionToken'] }
+        #self.cookie = dict(PVEAuthCookie=self.json_creds['data']['ticket'])
 
     def FetchNodeList(self):
         self.NodePath = self.api_root + '/nodes'
