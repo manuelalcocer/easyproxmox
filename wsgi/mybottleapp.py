@@ -20,11 +20,11 @@ def CogerToken():
     proxhome.FetchCreds()
     proxhome.FetchNodeList()
 
-    return proxhome.json_nodelist['data'][0]['node']
-    #longitud1 = str(len(proxhome.creds['cookie']['PVEAuthCookie']))
-    #longitud2 = str(len(proxhome.creds['cookie']['CSRFPreventionToken']))
-    #concatenado = longitud1 + ' : ' + longitud2
-    #return concatenado
+    #return proxhome.json_nodelist['data'][0]['node']
+    longitud1 = str(len(proxhome.creds['cookie']['PVEAuthCookie']))
+    longitud2 = str(len(proxhome.creds['header']['CSRFPreventionToken']))
+    concatenado = longitud1 + ' : ' + longitud2
+    return concatenado
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
