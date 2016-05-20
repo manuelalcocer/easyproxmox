@@ -1,12 +1,23 @@
+import os
+from bottle import TEMPLATE_PATH
+
 from bottle import route, default_app, template, static_file, request
 import json
 import requests
+import psycopg2
 
 from eproxlib.datacenter import DataCenter as MyDataCenter
 
 @route('/')
 def index():
-    return template('login.html')
+    #dbname = 'easyproxmox'
+    #dbuser = 'adminrpqtdpp'
+    #dbpassword = 'RY26llyFAWLc'
+    #try:
+    #    conn = psycopg2.connect("dbname=%s user='dbuser' host='localhost' password='dbpass'")
+    #except:
+    #    print "I am unable to connect to the database"
+    return template('main.html')
 
 @route('/fetchtoken', method='POST')
 def CogerToken():
@@ -31,8 +42,7 @@ def server_static(filepath):
     return static_file(filepath, root=os.environ['OPENSHIFT_REPO_DIR']+'static/')
 
 # This must be added in order to do correct path lookups for the views
-import os
-from bottle import TEMPLATE_PATH
+
 TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi/views/'))
 
 application=default_app()
