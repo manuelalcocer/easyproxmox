@@ -22,14 +22,12 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-            <% for element in menulist:
-                if element['active']:
-                    label_list = '<li class="selected"><a href="%s">%s</a></li>' % (element['url'], element['name'])
-                else:
-                    label_list = '<li><a href="%s">%s</a></li>' % (element['url'], element['name'])
-                end
-            %>
-                {{label_list}}
+            % for element in menulist:
+            %   if element['active']:
+                    <li class="selected"><a href="{{element['url']}}">{{element['name']}}</a></li>
+            %   else:
+                    <li><a href="{{element['url']}}">{{element['name']}}</a></li>
+            %   end
             % end
         </ul>
       </div>
