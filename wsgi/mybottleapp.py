@@ -8,7 +8,7 @@ def index():
     proxdb = MyDataBase('easyproxmox')
     proxdb.CreateConn()
     proxdb.Actualize()
-    return template('configure_content.tpl', datacenterlist = proxdb.datacenter['list'])
+    return template('main.tpl', datacenterlist = proxdb.datacenter['list'])
 
 @route('/fetchtoken', method='POST')
 def CogerToken():
@@ -23,6 +23,10 @@ def CogerToken():
     proxhome.FetchNodeList()
 
     return proxhome.json_nodelist['data'][0]['node']
+
+@route('/configureEP')
+def ConfigurarEP:
+    return template('configure_ep.tpl')
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
