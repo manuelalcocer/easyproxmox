@@ -5,14 +5,16 @@ from eproxlib.datacenter import DataBase as MyDataBase
 
 @route('/')
 def index():
-    global proxdb = MyDataBase('easyproxmox')
+    global proxdb
+    proxdb = MyDataBase('easyproxmox')
     proxdb.CreateConn()
     proxdb.Actualize()
     return template('main.tpl', datacenterlist = proxdb.datacenter['list'])
 
 @route('/fetchtoken', method='POST')
 def fetchtoken():
-    global proxhome = MyDataCenter('nashgul')
+    global proxhome
+    proxhome = MyDataCenter('nashgul')
     proxhome.https_url = 'https://proxmox.nashgul.com.es'
     proxhome.api_address = '/api2/json'
     proxhome.api_ticket = '/access/ticket'
