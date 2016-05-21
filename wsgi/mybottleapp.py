@@ -11,7 +11,7 @@ def index():
     return template('main.tpl', datacenterlist = proxdb.datacenter['list'])
 
 @route('/fetchtoken', method='POST')
-def CogerToken():
+def fetchtoken():
     proxhome = MyDataCenter('nashgul')
     proxhome.https_url = 'https://proxmox.nashgul.com.es'
     proxhome.api_address = '/api2/json'
@@ -25,7 +25,7 @@ def CogerToken():
     return proxhome.json_nodelist['data'][0]['node']
 
 @route('/configureEP')
-def ConfigurarEP():
+def configureEP():
     return template('configure_ep.tpl')
 
 @route('/static/<filepath:path>')

@@ -12,7 +12,7 @@
     %   end
     % else:
             <h2>No Hay ningún <b>Centro de Datos</b> configurado.</h2>
-            <h3>Vaya a <a href="configure.html">Configurar EP</a>.</h3>
+            <h3>Vaya a <a href="/configureEP">Configurar EP</a>.</h3>
     % end
     </div>
 </div>
