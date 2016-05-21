@@ -25,7 +25,7 @@ def CogerToken():
     return proxhome.json_nodelist['data'][0]['node']
 
 @route('/configureEP')
-def ConfigurarEP:
+def ConfigurarEP():
     return template('configure_ep.tpl')
 
 @route('/static/<filepath:path>')
