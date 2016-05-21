@@ -27,10 +27,10 @@
                     label_list = '<li class="selected"><a href="%s">%s</a></li>' % (element['url'], element['name'])
                 else:
                     label_list = '<li><a href="%s">%s</a></li>' % (element['url'], element['name'])
+                end
+                print label_list
+              end
             %>
-                {{label_list}}
-            %   end
-            % end
         </ul>
       </div>
     </div>
