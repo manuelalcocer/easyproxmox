@@ -24,7 +24,7 @@
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
             <% for element in menulist:
                 if element['active']:
-                    label_list = '<li class="selected"><a hren="%s">%s</a></li>' % (element['url'], elemento['name'])
+                    label_list = '<li class="selected"><a hren="%s">%s</a></li>' % (element['url'], element['name'])
                 else:
                     label_list = '<li><a href="%s">%s</a></li>' % (element['url'], element['name'])
             %>
