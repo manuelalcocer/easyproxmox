@@ -34,7 +34,7 @@ def configureEP():
 @route('/controlpanel', method='POST')
 def controlpanel():
     password = request.forms.get('password')
-    if password = proxdb.dbpassword:
+    if password == proxdb.dbpassword:
         return 'OK'
     else:
         return 'EENNGG!  xD'
