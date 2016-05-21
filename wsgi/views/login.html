@@ -1,53 +1,19 @@
-<!DOCTYPE HTML>
-<html>
+<%
+    menulist = ([   { 'name' : 'Home' , 'active' : True , 'url' : '/' },
+                    { 'name' : 'Configurar EP' , 'active' : False , 'url' : '/configureEP' } ])
+    include('header.tpl', title='Configurar EP', menulist = menulist)
+    include('sidebar.tpl', title='sidebar')
+%>
+    <div id="content">
+    <!-- insert the page content here -->
+    <form action='/fetchtoken' method="post">
+        Usuario:<br>
+            <input type="text" name="username" autofocus="autofocus"><br>
+        Contraseña:<br>
+            <input type="password" name="password">
+            <input type="submit" value="Enviar">
+    </form>
+    </div>
+</div>
 
-<head>
-  <title>EasyProxmox</title>
-  <meta name="description" content="Recursos web de proxmox" />
-  <meta name="keywords" content="proxmox,web,api" />
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="/static/proyecto/style/style.css" title="style" />
-</head>
-
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <div id="logo_text">
-          <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="index.html">Easy<span class="logo_colour">Proxmox</span></a></h1>
-          <h2>Interfaz amigable para Proxmox.</h2>
-        </div>
-      </div>
-      <div id="menubar">
-        <ul id="menu">
-          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="index.html">Home</a></li>
-          <li><a href="mvs.html">Máquinas Virtuales</a></li>
-        </ul>
-      </div>
-    </div>
-    <div id="site_content">
-      <div class="sidebar">
-        <!-- insert your sidebar items here -->
-        <ul>
-          <li><a href="#">link 1</a></li>
-        </ul>
-      </div>
-      <div id="content">
-        <!-- insert the page content here -->
-        <form action='/fetchtoken' method="post">
-            Usuario:<br>
-                <input type="text" name="username" autofocus="autofocus"><br>
-            Contraseña:<br>
-                <input type="password" name="password">
-                <input type="submit" value="Enviar">
-        </form>
-      </div>
-    </div>
-    <div id="content_footer"></div>
-    <div id="footer">
-        <p>easyproxmox</p>
-    </div>
-  </div>
-</body>
+% include('footer.tpl')

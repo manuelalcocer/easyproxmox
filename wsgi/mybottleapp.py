@@ -5,14 +5,14 @@ from eproxlib.datacenter import DataBase as MyDataBase
 
 @route('/')
 def index():
-    proxdb = MyDataBase('easyproxmox')
+    global proxdb = MyDataBase('easyproxmox')
     proxdb.CreateConn()
     proxdb.Actualize()
     return template('main.tpl', datacenterlist = proxdb.datacenter['list'])
 
 @route('/fetchtoken', method='POST')
 def fetchtoken():
-    proxhome = MyDataCenter('nashgul')
+    global proxhome = MyDataCenter('nashgul')
     proxhome.https_url = 'https://proxmox.nashgul.com.es'
     proxhome.api_address = '/api2/json'
     proxhome.api_ticket = '/access/ticket'
@@ -27,6 +27,15 @@ def fetchtoken():
 @route('/configureEP')
 def configureEP():
     return template('configure_ep.tpl')
+
+
+@route('/controlpanel', method='POST')
+def controlpanel():
+    password = request.forms.get('password')
+    if password = proxdb.dbpassword:
+        return 'OK'
+    else:
+        return 'EENNGG!  xD'
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
