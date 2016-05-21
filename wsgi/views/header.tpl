@@ -22,33 +22,16 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="index.html">Home</a></li>
-          <li><a href="configure.html">Configurar EP</a></li>
+            <% for element in menulist:
+                if element['active']:
+                    label_list = '<li class="selected"><a hren="%s">%s</a></li>' % (element['url'], elemento['name'])
+                else:
+                    label_list = '<li><a href="%s">%a</a></li>' % (element['url'], element['name'])
+            %>
+                {{label_list}}
+            %   end
+            % end
         </ul>
       </div>
     </div>
     <div id="site_content">
-      <div class="sidebar">
-        <!-- insert your sidebar items here -->
-        <ul>
-          <li><a href="#">link 1</a></li>
-        </ul>
-      </div>
-      <div id="content">
-        <!-- insert the page content here -->
-        % if len(datacenterlist) >= 1:
-        %   for linea in datacenterlist:
-                <h3> {{linea}} </h3>
-        %   end
-        % else:
-                <h2>No Hay ningún <b>Centro de Datos</b> configurado.</h2>
-                <h3>Vaya a <a href="configure.html">Configurar EP</a>.</h3>
-        % end
-      </div>
-    </div>
-    <div id="content_footer"></div>
-    <div id="footer">
-        <p>easyproxmox</p>
-    </div>
-  </div>
-</body>
