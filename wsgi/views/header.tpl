@@ -28,9 +28,9 @@
                 else:
                     label_list = '<li><a href="%s">%s</a></li>' % (element['url'], element['name'])
                 end
-                print label_list
-              end
             %>
+                {{label_list}}
+            % end
         </ul>
       </div>
     </div>
