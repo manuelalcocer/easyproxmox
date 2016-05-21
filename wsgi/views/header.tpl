@@ -26,7 +26,7 @@
                 if element['active']:
                     label_list = '<li class="selected"><a hren="%s">%s</a></li>' % (element['url'], elemento['name'])
                 else:
-                    label_list = '<li><a href="%s">%a</a></li>' % (element['url'], element['name'])
+                    label_list = '<li><a href="%s">%s</a></li>' % (element['url'], element['name'])
             %>
                 {{label_list}}
             %   end
