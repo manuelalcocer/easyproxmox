@@ -19,7 +19,7 @@
             <input type="password" name="password"><br>
             <input type="submit" value="Crear">
     </form>
-    <!-- to here -->
+
     % dcdb.Actualize()
     % if len(dcdb.datacenter['list']) >= 1:
             <ul>
@@ -28,6 +28,7 @@
     %   end
             </ul>
     % end
+    <!-- to here -->
     </div>
 </div>
 % include('footer.tpl')

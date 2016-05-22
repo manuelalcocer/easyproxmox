@@ -1,7 +1,7 @@
 <%
     menulist = ([   { 'name' : 'Home' , 'active' : True , 'url' : '/' },
                     { 'name' : 'Configurar EP' , 'active' : False , 'url' : '/configureEP' } ])
-    include('header.tpl', title='Configurar EP', menulist = menulist)
+    include('header.tpl', title='Home', menulist = menulist)
     include('sidebar.tpl', title='sidebar')
 %>
     <div id="content">
@@ -17,6 +17,7 @@
             <h3>No Hay ningún <b>Centro de Datos</b> configurado.</h3>
             <p>Vaya a <a href="/configureEP">Configurar EP</a>.</p>
     % end
+    <!-- to here -->
     </div>
 </div>
 % include('footer.tpl')

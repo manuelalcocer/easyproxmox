@@ -48,7 +48,7 @@ def createdatacenter():
     createDC.FetchCreds()
     if createDC.creds.has_key('cookie'):
         proxdb.InsertDataCenter(name = nameondb,url = url, port = port)
-        proxdb.InsertUser(centername = nameondb, username = username, port = port)
+        proxdb.InsertUser(centername = nameondb, username = username)
         return template('controlpanel.tpl', dcdb = proxdb)
     else:
         return 'hubo un fallo'
@@ -57,7 +57,8 @@ def createdatacenter():
 @route('/manage/<name>')
 def manage(name):
     # name es el nombre del centro de datos en la BBDD
-    pass
+    global proxdb
+    return template('manage.tpl', name = name, dcdb = proxdb)
 
 @route('/fetchtoken', method='POST')
 def fetchtoken():
