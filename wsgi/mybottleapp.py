@@ -83,10 +83,11 @@ def manage(name):
 def manageMV(centername):
     global proxdb
     global proxhome
-    if (proxhome and not proxhome.creds['cookie']) or not proxhome:
+    try:
+        if proxhome.creds['cookie']:
+            return template('manage_mv.tpl', centername = centername)
+    except:
         return template('login.tpl', source = '/manage/MV/%s' % centername, centername = centername)
-    elif proxhome and proxhome.creds['cookie']:
-        return template('manage_mv.tpl', centername = centername)
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
