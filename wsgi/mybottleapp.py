@@ -33,7 +33,7 @@ def FetchCreds(centername):
 
     proxhome.FetchCreds()
     if proxhome.creds['cookie']:
-        return template('manage.tpl')
+        return template('manage.tpl', centername = centername)
     #proxhome.FetchNodeList()
 
     #return proxhome.json_nodelist['data'][0]['node']
