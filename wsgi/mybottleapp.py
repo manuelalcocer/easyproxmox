@@ -82,11 +82,11 @@ def manage(centername):
 
 @route('/manage/MV/<centername>')
 def manageMV(centername):
-    try:
-        return proxhome.creds['cookie']
+    #try:
+    return proxhome.creds['cookie']
             #return template('manage_mv.tpl', centername = centername)
-    except:
-        redirect('/login/%s' % centername)
+    #except:
+    #    redirect('/login/%s' % centername)
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
