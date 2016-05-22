@@ -42,7 +42,7 @@ class DataCenter:
         self.creds = {}
 
     def SetParams(self, **kwargs):
-        self.https_url = kwargs['url']
+        self.https_url = 'https://' + kwargs['url']
         self.port = kwargs['port']
         self.creds['username'] = kwargs['username']
         self.creds['password'] = kwargs['password']
