@@ -45,7 +45,7 @@ class DataBase:
 
     def InsertUser(self, **kwargs):
         self.CreateConn()
-        self.cur.execute("""INSERT INTO usuarios (nombre, centro) values (%(name)s, %(centername)s)""", kwargs)
+        self.cur.execute("""INSERT INTO usuarios (nombre, centro) values (%(username)s, %(centername)s)""", kwargs)
         self.conn.commit()
         self.CloseConn()
 

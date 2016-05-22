@@ -53,7 +53,7 @@ def createdatacenter():
     createDC.FetchCreds()
     if createDC.creds.has_key('cookie'):
         proxdb.InsertDataCenter(name = nameondb,url = url)
-        proxdb.InsertUser(centername = nameondb, username = name)
+        proxdb.InsertUser(centername = nameondb, username = username)
         return template('controlpanel.tpl', dcdb = proxdb)
     else:
         return 'hubo un fallo'
