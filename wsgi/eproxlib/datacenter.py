@@ -19,8 +19,11 @@ class DataBase:
             pass
 
     def Actualize(self):
+        self.CreateConn()
         self.cur.execute("""SELECT * from centros_de_datos""")
         self.datacenter['list'] = self.cur.fetchall()
+        self.cur.close()
+        self.conn.close()
 
     def GenListDataCenters(self):
         self.Actualize()
@@ -30,8 +33,11 @@ class DataBase:
         self.htmllist = self.htmllist + '</ul>'
 
     def InsertDataCenter(self, name, url):
+        self.CreateConn()
         self.cur.execute("""INSERT INTO centros_de_datos (nombre, url) values ( %s, %s )""", (name, url))
         self.conn.commit()
+        self.cur.close()
+        self.conn.close()
 
 class DataCenter:
     def __init__(self, id_name):

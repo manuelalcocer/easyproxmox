@@ -9,7 +9,7 @@
     % if len(datacenterlist) >= 1:
             <ul>
     %   for linea in datacenterlist:
-            <li> {{linea[1]}} </li>
+            <li> <a href="{{linea[2]}}">{{linea[1]}}</a></li>
     %   end
             </ul>
     % else:
