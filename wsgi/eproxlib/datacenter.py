@@ -30,7 +30,7 @@ class DataBase:
 
     def InsertDataCenter(self, **kwargs):
         self.CreateConn()
-        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url) values (%(name)s, %(url)s, %(port)s)""", kwargs)
+        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url, puerto) values (%(name)s, %(url)s, %(port)s)""", kwargs)
         self.conn.commit()
         self.CloseConn()
 
