@@ -83,8 +83,7 @@ def manage(name):
 def manageMV(name):
     global proxdb
     global proxhome
-    checkcreds = proxhome.CheckCreds()
-    if not checkcreds:
+    if not proxhome.creds['cookie']:
         return template('login.tpl', source = '/manage/MV/%s' % centername, centername = centername)
     else:
         return template('manage_mv.tpl', centername = centername)
