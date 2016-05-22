@@ -11,6 +11,7 @@ drop table centros_de_datos;
 create table centros_de_datos (
     nombre  varchar(30),
     url     varchar(100),
+    puerto  integer,
     constraint pk_centros_de_datos primary key (nombre),
     constraint url_unique UNIQUE (url)
 );

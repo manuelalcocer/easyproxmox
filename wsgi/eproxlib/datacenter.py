@@ -28,18 +28,9 @@ class DataBase:
         self.datacenter['list'] = self.cur.fetchall()
         self.CloseConn()
 
-    def GenListDataCenters(self):
-        self.Actualize()
-        self.htmllist = '<ul><li>Lista</li>'
-        for dc in self.datacenter['list']:
-            self.htmllist = self.htmllist + '<li>%s</li>'
-        self.htmllist = self.htmllist + '</ul>'
-
     def InsertDataCenter(self, **kwargs):
         self.CreateConn()
-        name = kwargs['name']
-        url = 'https://' + kwargs['url']
-        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url) values ( %s, %s )""", (name,url))
+        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url) values (%(name)s, %(url)s, %(port)s)""", kwargs)
         self.conn.commit()
         self.CloseConn()
 
@@ -63,7 +54,6 @@ class DataCenter:
         self.port = kwargs['port']
         self.creds['username'] = kwargs['username']
         self.creds['password'] = kwargs['password']
-
 
     def FetchCreds(self):
         parameters_list = { 'username' : self.creds['username'] + '@pam', 'password' : self.creds['password'] }

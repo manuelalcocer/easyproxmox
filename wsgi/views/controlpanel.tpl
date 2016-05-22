@@ -20,6 +20,14 @@
             <input type="submit" value="Crear">
     </form>
     <!-- to here -->
+    % dcdb.Actualize()
+    % if len(dcdb.datacenter['list']) >= 1:
+            <ul>
+    %   for linea in dcdb.datacenter['list']:
+            <li><a href="/manage/{{linea[0]}}">{{linea[0]}}</a></li>
+    %   end
+            </ul>
+    % end
     </div>
 </div>
 % include('footer.tpl')

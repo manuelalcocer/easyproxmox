@@ -3,6 +3,10 @@ from bottle import route, default_app, template, static_file, request
 from eproxlib.datacenter import DataCenter as MyDataCenter
 from eproxlib.datacenter import DataBase as MyDataBase
 
+## inicialización de la web
+global proxdb
+global proxhome
+
 @route('/')
 def index():
     # inicializa al base de datos, con el nombre proxdb
@@ -12,18 +16,7 @@ def index():
     proxdb.Actualize()
     return template('main.tpl', dcdb = proxdb)
 
-@route('/fetchtoken', method='POST')
-def fetchtoken():
-    proxhome = MyDataCenter('nashgul')
-    proxhome.https_url = 'https://proxmox.nashgul.com.es'
-    proxhome.creds['username'] = request.forms.get('username')
-    proxhome.creds['password'] = request.forms.get('password')
-
-    proxhome.FetchCreds()
-    proxhome.FetchNodeList()
-
-    return proxhome.json_nodelist['data'][0]['node']
-
+## zona de configuración
 @route('/configureEP')
 def configureEP():
     global proxdb
@@ -53,16 +46,30 @@ def createdatacenter():
     createDC.FetchCreds()
     if createDC.creds.has_key('cookie'):
         proxdb.InsertDataCenter(name = nameondb,url = url)
-        proxdb.InsertUser(centername = nameondb, username = username)
+        proxdb.InsertUser(centername = nameondb, username = username, port = port)
         return template('controlpanel.tpl', dcdb = proxdb)
     else:
         return 'hubo un fallo'
 
+## Zona de acciones
 @route('/manage/<name>')
 def manage(name):
     # name es el nombre del centro de datos en la BBDD
     pass
 
+@route('/fetchtoken', method='POST')
+def fetchtoken():
+    proxhome = MyDataCenter('nashgul')
+    proxhome.https_url = 'https://proxmox.nashgul.com.es'
+    proxhome.creds['username'] = request.forms.get('username')
+    proxhome.creds['password'] = request.forms.get('password')
+
+    proxhome.FetchCreds()
+    proxhome.FetchNodeList()
+
+    return proxhome.json_nodelist['data'][0]['node']
+
+## Zona de bottle
 @route('/static/<filepath:path>')
 def server_static(filepath):
     return static_file(filepath, root=os.environ['OPENSHIFT_REPO_DIR']+'static/')
@@ -70,9 +77,6 @@ def server_static(filepath):
 # This must be added in order to do correct path lookups for the views
 import os
 from bottle import TEMPLATE_PATH
-
-global proxdb
-global proxhome
 
 TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi/views/'))
 
