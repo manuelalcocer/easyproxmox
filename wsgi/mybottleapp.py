@@ -53,6 +53,9 @@ def createdatacenter():
     createDC.FetchCreds()
     if createDC.creds.has_key('cookie'):
         proxdb.InsertDataCenter(nameondb,url)
+        return createDC.creds['cookie']
+    else:
+        return 'hubo un fallo'
 
 
 
