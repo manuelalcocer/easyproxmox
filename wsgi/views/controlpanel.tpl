@@ -11,15 +11,17 @@
             Nombre:<br>
             <input type="text" name="name" autofocus="autofocus"><br>
             URL:<br>
-            <input type="text" name="url" value="https://"><br>
+            https://<input type="text" name="url"><br>
             Puerto:<br>
             <input type="text" name="port" value="443"><br>
             Usuario:<br>
             <input type="text" name="username"><br>
             Contraseña:<br>
             <input type="password" name="password"><br>
-            <input type="submit" value="Enviar">
+            <input type="submit" value="Crear">
     </form>
+    % dcdb.GenListDataCenter()
+    {{dcdb.htmllist}}
     <!-- to here -->
     </div>
 </div>

@@ -35,9 +35,17 @@ def configureEP():
 def controlpanel():
     password = request.forms.get('password')
     if password == proxdb.dbpassword:
-        return template('controlpanel.tpl', password = password)
+        return template('controlpanel.tpl', password = password, dcdb = proxdb)
     else:
         return 'EENNGG!  xD'
+
+@route('/createdatacenter', method='POST')
+def createdatacenter():
+    username = request.forms.get('username')
+    password = request.forms.get('password')
+    url = request.forms.get('url')
+    port = request.forms.get('port')
+
 
 @route('/static/<filepath:path>')
 def server_static(filepath):

@@ -22,6 +22,13 @@ class DataBase:
         self.cur.execute("""SELECT * from centros_de_datos""")
         self.datacenter['list'] = self.cur.fetchall()
 
+    def GenListDataCenters(self):
+        self.Actualize()
+        self.htmllist = '<ul>'
+        for dc in self.datacenter['list']:
+            self.htmllist = self.htmllist + '<il>%s</il>'
+        self.htmllist = self.htmllist + '</ul>'
+
 class DataCenter:
     def __init__(self, id_name):
         self.id_name = id_name

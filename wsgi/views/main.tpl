@@ -7,9 +7,11 @@
     <div id="content">
     <!-- insert the page content here -->
     % if len(datacenterlist) >= 1:
+            <ul>
     %   for linea in datacenterlist:
-            <h3> {{linea}} </h3>
+            <il> {{linea}} </il>
     %   end
+            </ul>
     % else:
             <h2>No Hay ningún <b>Centro de Datos</b> configurado.</h2>
             <h3>Vaya a <a href="/configureEP">Configurar EP</a>.</h3>
