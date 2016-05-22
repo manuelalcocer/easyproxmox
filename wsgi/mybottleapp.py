@@ -31,7 +31,7 @@ def login(centername):
     proxhome.FetchCreds()
     if proxhome.creds['cookie']:
         source_site = request.forms.get('source')
-        redirect('/manage/MV/%s')
+        redirect('/manage/MV/%s' % proxdb.infocenter[0])
     #proxhome.FetchNodeList()
 
     #return proxhome.json_nodelist['data'][0]['node']
