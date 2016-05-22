@@ -32,8 +32,9 @@ def FetchCreds(centername):
     proxhome.creds['password'] = request.forms.get('password')
 
     proxhome.FetchCreds()
-    if proxhome.creds['cookie']:
-        redirect('/manage/%s' % centername)
+    return proxhome.creds['cookie']
+    #if proxhome.creds['cookie']:
+    #    redirect('/manage/%s' % centername)
     #proxhome.FetchNodeList()
 
     #return proxhome.json_nodelist['data'][0]['node']
