@@ -63,7 +63,7 @@ class DataCenter:
 
     def FetchCreds(self):
         parameters_list = { 'username' : self.creds['username'] + '@pam', 'password' : self.creds['password'] }
-        self.api_root = self.https_url + ':' + self.port + self.api_address
+        self.api_root = self.https_url + ':' + str(self.port) + self.api_address
         self.creds_response = requests.post(self.api_root + self.api_ticket, params = parameters_list, verify = False)
         self.json_creds = loads(self.creds_response.text)
         self.creds['cookie'] = { 'PVEAuthCookie' : self.json_creds['data']['ticket'] }
