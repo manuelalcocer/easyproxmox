@@ -8,9 +8,9 @@
     <div id="content">
     <!-- insert the page content here -->
     <ul>
-        <li><a href="/manage/MV/{{name}}">Máquinas virtuales</a></li>
-        <li><a href="/manage/LXC/{{name}}">Contenedores</a></li>
-        <li><a href="/manage/TPL/{{name}}">Plantillas</a></li>
+        <li><a href="/manage/MV/{{centername}}">Máquinas virtuales</a></li>
+        <li><a href="/manage/LXC/{{centername}}">Contenedores</a></li>
+        <li><a href="/manage/TPL/{{centername}}">Plantillas</a></li>
     </ul>
     <!-- to here -->
     </div>

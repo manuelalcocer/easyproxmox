@@ -18,9 +18,12 @@ def index():
     proxdb.Actualize()
     return template('main.tpl', dcdb = proxdb)
 
-@route('/login/<centername>', method='POST')
+@route('/login/<centername>')
 def login(centername):
-    global proxdb
+    return template('login.tpl', centername = centername)
+
+@route('/FetchCreds/<centername>', method='POST')
+def FetchCreds(centername):
     proxdb.InfoCenter(centername=centername)
     proxhome = MyDataCenter(proxdb.infocenter[0])
     proxhome.https_url = proxdb.infocenter[1]
@@ -30,8 +33,7 @@ def login(centername):
 
     proxhome.FetchCreds()
     if proxhome.creds['cookie']:
-        source_site = request.forms.get('source')
-        redirect('/manage/MV/%s' % proxdb.infocenter[0])
+        return template('manage.tpl')
     #proxhome.FetchNodeList()
 
     #return proxhome.json_nodelist['data'][0]['node']
@@ -73,21 +75,13 @@ def createdatacenter():
         return 'hubo un fallo'
 
 ## Zona de acciones
-@route('/manage/<name>')
-def manage(name):
-    # name es el nombre del centro de datos en la BBDD
-    global proxdb
-    return template('manage.tpl', name = name, dcdb = proxdb)
-
 @route('/manage/MV/<centername>')
 def manageMV(centername):
-    global proxdb
-    global proxhome
     try:
         if proxhome.creds['cookie']:
             return template('manage_mv.tpl', centername = centername)
     except:
-        return template('login.tpl', source = '/manage/MV/%s' % centername, centername = centername)
+        redirect('/login/%s' % centername)
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
