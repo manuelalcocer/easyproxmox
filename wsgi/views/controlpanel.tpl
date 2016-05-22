@@ -12,7 +12,7 @@
             <input type="text" name="name" autofocus="autofocus"><br>
             https://<input type="text" name="url"><br>
             <b>Puerto:</b><br>
-            <input type="text" name="port" value="443"><br>
+            <input type="text" name="port"><br>
             <b>Usuario:</b><br>
             <input type="text" name="username"><br>
             <b>Contraseña:</b><br>
