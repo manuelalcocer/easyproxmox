@@ -80,9 +80,9 @@ def manage(centername):
 @route('/manage/MV/<centername>')
 def manageMV(centername):
     try:
-        if len(proxhome.creds['cookie']) > 1:
+        #if len(proxhome.creds['cookie']) > 1:
             #return template('managemv.tpl', centername = centername)
-            return 'oe oe'
+        return 'A: ' + proxhome.creds['cookie'] +
     except:
         redirect('/login/%s' % centername)
 
