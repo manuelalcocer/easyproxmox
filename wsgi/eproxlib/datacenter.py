@@ -24,7 +24,7 @@ class DataBase:
 
     def Actualize(self):
         self.CreateConn()
-        self.cur.execute("""SELECT * from centros_de_datos""")
+        self.cur.execute("""SELECT * from centros_de_datos;""")
         self.datacenter['list'] = self.cur.fetchall()
         self.CloseConn()
 
@@ -42,7 +42,7 @@ class DataBase:
 
     def InfoCenter(self, **kwargs):
         self.CreateConn()
-        self.cur.execute("""select * from centros_de_datos where nombre = %(centername)s""", kwargs)
+        self.cur.execute("""select * from centros_de_datos where nombre = %(centername)s;""", kwargs)
         self.infocenter = self.cur.fetchall()
 
 class DataCenter:
