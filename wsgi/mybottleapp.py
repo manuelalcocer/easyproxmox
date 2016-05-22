@@ -5,7 +5,7 @@ from eproxlib.datacenter import DataBase as MyDataBase
 
 @route('/')
 def index():
-
+    global proxdb
     proxdb = MyDataBase('easyproxmox')
     proxdb.CreateConn()
     proxdb.Actualize()
@@ -13,7 +13,7 @@ def index():
 
 @route('/fetchtoken', method='POST')
 def fetchtoken():
-
+    global proxhome
     proxhome = MyDataCenter('nashgul')
     proxhome.https_url = 'https://proxmox.nashgul.com.es'
     proxhome.api_address = '/api2/json'
@@ -35,7 +35,7 @@ def configureEP():
 def controlpanel():
     password = request.forms.get('password')
     if password == proxdb.dbpassword:
-        return template('controlpanel.tpl', password = password)
+        return 'ok'
     else:
         return 'EENNGG!  xD'
 
