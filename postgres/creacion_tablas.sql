@@ -4,11 +4,12 @@ drop table plantillas;
 drop table contenedores;
 drop table maquinas_virtuales;
 drop table nodos;
+drop table logueos;
 drop table usuarios;
 drop table centros_de_datos;
 
 create table centros_de_datos (
-    id      numeric(2),
+    id      serial,
     nombre  varchar(30),
     url     varchar(100),
     constraint pk_centros_de_datos primary key (id),
@@ -16,7 +17,7 @@ create table centros_de_datos (
 );
 
 create table usuarios (
-    id          numeric(3),
+    id          serial,
     id_centro   numeric(2),
     nombre      varchar(30),
     constraint pk_usuarios primary key (id),
@@ -24,7 +25,7 @@ create table usuarios (
 );
 
 create table logueos (
-    id          numeric(6),
+    id          serial,
     fechahora   timestamp,
     id_usuario  numeric(3),
     ticket      varchar(400),
@@ -34,7 +35,7 @@ create table logueos (
 );
 
 create table nodos (
-    id          numeric(2),
+    id          serial,
     id_centro   numeric(2),
     nombre      varchar(30),
     constraint pk_nodos primary key (id),
@@ -42,7 +43,7 @@ create table nodos (
 );
 
 create table maquinas_virtuales (
-    id          numeric(4),
+    id          serial,
     id_nodo     numeric(2),
     nombre      varchar(30),
     constraint pk_maquinas_virtuales primary key (id),
@@ -50,7 +51,7 @@ create table maquinas_virtuales (
 );
 
 create table contenedores (
-    id          numeric(4),
+    id          serial,
     id_nodo     numeric(2),
     nombre      varchar(30),
     constraint pk_contenedores primary key (id),
@@ -58,7 +59,7 @@ create table contenedores (
 );
 
 create table plantillas (
-    id          numeric(4),
+    id          serial,
     id_nodo     numeric(2),
     nombre      varchar(30),
     constraint pk_plantillas primary key (id),
@@ -66,14 +67,14 @@ create table plantillas (
 );
 
 create table tipos_operaciones (
-    id              numeric(3),
+    id              serial,
     nombre          varchar(30),
     descripcion     varchar(100),
     constraint pk_tipos_operaciones primary key (id)
 );
 
 create table operaciones (
-    id          numeric(6),
+    id          serial,
     fechahora   timestamp,
     id_usuario  numeric(3),
     id_nodo     numeric(2),
