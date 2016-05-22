@@ -19,7 +19,7 @@ def index():
     return template('main.tpl', dcdb = proxdb)
 
 @route('/login/<centername>', method='POST')
-def login():
+def login(centername):
     global proxdb
     centerinfo = proxdb.InfoCenter(centername)
     proxhome = MyDataCenter(centerinfo[0])
