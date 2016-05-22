@@ -7,6 +7,7 @@ from eproxlib.datacenter import DataBase as MyDataBase
 def index():
     # inicializa al base de datos, con el nombre proxdb
     # la base de datos es la misma para todos los centros de datos 'proxdb'
+    global proxdb
     proxdb = MyDataBase('easyproxmox')
     proxdb.Actualize()
     return template('main.tpl', dcdb = proxdb)
@@ -25,10 +26,12 @@ def fetchtoken():
 
 @route('/configureEP')
 def configureEP():
+    global proxdb
     return template('configure_ep.tpl', dcdb = proxdb)
 
 @route('/controlpanel', method='POST')
 def controlpanel():
+    global proxdb
     password = request.forms.get('password')
     if password == proxdb.dbpassword:
         return template('controlpanel.tpl', dcdb = proxdb)
@@ -37,6 +40,7 @@ def controlpanel():
 
 @route('/createdatacenter', method='POST')
 def createdatacenter():
+    global proxdb
     username = request.forms.get('username')
     password = request.forms.get('password')
     url = request.forms.get('url')
