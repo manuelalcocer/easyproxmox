@@ -27,7 +27,7 @@ def fetchtoken():
 
 @route('/configureEP')
 def configureEP():
-    return template('configure_ep.tpl')
+    return template('configure_ep.tpl', dcdb = proxdb)
 
 @route('/controlpanel', method='POST')
 def controlpanel():
