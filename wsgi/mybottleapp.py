@@ -9,9 +9,8 @@ def index():
     # la base de datos es la misma para todos los centros de datos 'proxdb'
     global proxdb
     proxdb = MyDataBase('easyproxmox')
-    proxdb.CreateConn()
     proxdb.Actualize()
-    return template('main.tpl', datacenterlist = proxdb.datacenter['list'])
+    return template('main.tpl', dcdb = proxdb)
 
 @route('/fetchtoken', method='POST')
 def fetchtoken():
@@ -30,12 +29,11 @@ def fetchtoken():
 def configureEP():
     return template('configure_ep.tpl')
 
-
 @route('/controlpanel', method='POST')
 def controlpanel():
     password = request.forms.get('password')
     if password == proxdb.dbpassword:
-        return template('controlpanel.tpl', password = password, dcdb = proxdb)
+        return template('controlpanel.tpl', dcdb = proxdb)
     else:
         return 'EENNGG!  xD'
 
@@ -52,12 +50,16 @@ def createdatacenter():
     createDC.SetParams(username = username, password = password, url = url, port = port)
     createDC.FetchCreds()
     if createDC.creds.has_key('cookie'):
-        proxdb.InsertDataCenter(nameondb,url)
-        return createDC.creds['cookie']
+        proxdb.InsertDataCenter(name = nameondb,url = url)
+        proxdb.InsertUser(nameondb = centername, username = name)
+        return template('controlpanel.tpl', dcdb = proxdb)
     else:
         return 'hubo un fallo'
 
-
+@route('/manage/<name>')
+def manage(name):
+    # name es el nombre del centro de datos en la BBDD
+    pass
 
 @route('/static/<filepath:path>')
 def server_static(filepath):

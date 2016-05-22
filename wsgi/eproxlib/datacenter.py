@@ -18,12 +18,15 @@ class DataBase:
         except:
             pass
 
+    def CloseConn(self):
+        self.cur.close()
+        self.conn.close()
+
     def Actualize(self):
         self.CreateConn()
         self.cur.execute("""SELECT * from centros_de_datos""")
         self.datacenter['list'] = self.cur.fetchall()
-        self.cur.close()
-        self.conn.close()
+        self.CloseConn()
 
     def GenListDataCenters(self):
         self.Actualize()
@@ -32,12 +35,19 @@ class DataBase:
             self.htmllist = self.htmllist + '<li>%s</li>'
         self.htmllist = self.htmllist + '</ul>'
 
-    def InsertDataCenter(self, name, url):
+    def InsertDataCenter(self, **kwargs):
         self.CreateConn()
-        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url) values ( %s, %s )""", (name, url))
+        name = kwargs['name']
+        url = 'https://' + kwargs['url']
+        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url) values ( %s, %s )""", (name,url))
         self.conn.commit()
-        self.cur.close()
-        self.conn.close()
+        self.CloseConn()
+
+    def InsertUser(self, **kwargs):
+        self.CreateConn()
+        self.cur.execute("""INSERT INTO usuarios (nombre, centro) values (%(name)s, %(centername)s)""", kwargs)
+        self.conn.commit()
+        self.CloseConn()
 
 class DataCenter:
     def __init__(self, id_name):
