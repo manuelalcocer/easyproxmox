@@ -29,13 +29,24 @@ class DataBase:
             self.htmllist = self.htmllist + '<li>%s</li>'
         self.htmllist = self.htmllist + '</ul>'
 
+    def InsertDataCenter(self, **kwargs):
+        self.cur.execute('''INSERT INTO centros_de_datos (nombre, url) values ( %(name)s, %(url)s )''', kwargs)
+
 class DataCenter:
     def __init__(self, id_name):
         self.id_name = id_name
         self.https_url = ''
-        self.api_address = ''
-        self.api_ticket = ''
+        self.port = ''
+        self.api_address = '/api2/json'
+        self.api_ticket = '/access/ticket'
         self.creds = {}
+
+    def SetParams(self, **kwargs)
+        self.https_url = kwargs['url']
+        self.port = kwargs['port']
+        self.creds['username'] = kwargs['username']
+        self.creds['password'] = kwargs['password']
+
 
     def FetchCreds(self):
         parameters_list = { 'username' : self.creds['username'] + '@pam', 'password' : self.creds['password'] }

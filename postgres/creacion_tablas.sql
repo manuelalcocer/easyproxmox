@@ -11,7 +11,8 @@ create table centros_de_datos (
     id      numeric(2),
     nombre  varchar(30),
     url     varchar(100),
-    constraint pk_centros_de_datos primary key (id)
+    constraint pk_centros_de_datos primary key (id),
+    constraint url_unique UNIQUE (url)
 );
 
 create table usuarios (
@@ -82,4 +83,3 @@ create table operaciones (
     constraint fk_operaciones_nodo foreign key (id_nodo) references nodos (id),
     constraint fk_operaciones_tipo foreign key (id_tipo) references tipos_operaciones (id)
 );
-

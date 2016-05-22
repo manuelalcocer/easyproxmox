@@ -5,6 +5,8 @@ from eproxlib.datacenter import DataBase as MyDataBase
 
 @route('/')
 def index():
+    # inicializa al base de datos, con el nombre proxdb
+    # la base de datos es la misma para todos los centros de datos 'proxdb'
     global proxdb
     proxdb = MyDataBase('easyproxmox')
     proxdb.CreateConn()
@@ -16,8 +18,6 @@ def fetchtoken():
     global proxhome
     proxhome = MyDataCenter('nashgul')
     proxhome.https_url = 'https://proxmox.nashgul.com.es'
-    proxhome.api_address = '/api2/json'
-    proxhome.api_ticket = '/access/ticket'
     proxhome.creds['username'] = request.forms.get('username')
     proxhome.creds['password'] = request.forms.get('password')
 
@@ -45,6 +45,15 @@ def createdatacenter():
     password = request.forms.get('password')
     url = request.forms.get('url')
     port = request.forms.get('port')
+    if len(port) < 1:
+        port = '443'
+    nameondb = request.forms.get('name')
+    createDC = MyDataCenter(nameondb)
+    createDC.SetParams(username = username, password = password, url = url, port = port)
+    createDC.FetchCreds()
+    if createDC.creds.has_key('cookie'):
+        proxdb.InsertDataCenter(name = nameondb, username = username, password = password, url = url, port = port)
+
 
 
 @route('/static/<filepath:path>')

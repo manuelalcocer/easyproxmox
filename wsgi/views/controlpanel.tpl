@@ -8,20 +8,17 @@
     <!-- insert the page content here -->
     <h3>Inserte los datos del servidor Proxmox:</h3>
     <form action='/createdatacenter' method="post">
-            Nombre:<br>
+            <b>Nombre:</b><br>
             <input type="text" name="name" autofocus="autofocus"><br>
-            URL:<br>
             https://<input type="text" name="url"><br>
-            Puerto:<br>
+            <b>Puerto:</b><br>
             <input type="text" name="port" value="443"><br>
-            Usuario:<br>
+            <b>Usuario:</b><br>
             <input type="text" name="username"><br>
-            Contraseña:<br>
+            <b>Contraseña:</b><br>
             <input type="password" name="password"><br>
             <input type="submit" value="Crear">
     </form>
-    % dcdb.GenListDataCenters()
-    {{dcdb.htmllist}}
     <!-- to here -->
     </div>
 </div>
