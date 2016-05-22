@@ -5,7 +5,7 @@ from eproxlib.datacenter import DataBase as MyDataBase
 
 @route('/')
 def index():
-    global proxdb
+
     proxdb = MyDataBase('easyproxmox')
     proxdb.CreateConn()
     proxdb.Actualize()
@@ -13,7 +13,7 @@ def index():
 
 @route('/fetchtoken', method='POST')
 def fetchtoken():
-    global proxhome
+
     proxhome = MyDataCenter('nashgul')
     proxhome.https_url = 'https://proxmox.nashgul.com.es'
     proxhome.api_address = '/api2/json'
@@ -46,6 +46,9 @@ def server_static(filepath):
 # This must be added in order to do correct path lookups for the views
 import os
 from bottle import TEMPLATE_PATH
+
+global proxdb
+global proxhome
 
 TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi/views/'))
 
