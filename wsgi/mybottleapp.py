@@ -24,6 +24,7 @@ def login(centername):
 
 @route('/FetchCreds/<centername>', method='POST')
 def FetchCreds(centername):
+    global proxhome
     proxdb.InfoCenter(centername=centername)
     proxhome = MyDataCenter(proxdb.infocenter[0])
     proxhome.https_url = proxdb.infocenter[1]
@@ -32,9 +33,8 @@ def FetchCreds(centername):
     proxhome.creds['password'] = request.forms.get('password')
 
     proxhome.FetchCreds()
-    return proxhome.creds['cookie']
-    #if proxhome.creds['cookie']:
-    #    redirect('/manage/%s' % centername)
+    if proxhome.creds['cookie']:
+        redirect('/manage/%s' % centername)
     #proxhome.FetchNodeList()
 
     #return proxhome.json_nodelist['data'][0]['node']
