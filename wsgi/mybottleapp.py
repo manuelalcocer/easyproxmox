@@ -80,11 +80,11 @@ def manage(centername):
 @route('/node/MV/<centername>')
 def nodeMV(centername):
     global proxhome
-    #try:
-    #    if len(proxhome.creds['cookie']) > 1:
-    return template('managemv.tpl', centername = centername)
-    #except:
-    #    redirect('/login/%s' % centername)
+    try:
+        if len(proxhome.creds['cookie']['PVEAuthCookie']) > 1:
+            return template('managemv.tpl', centername = centername)
+    except:
+        redirect('/login/%s' % centername)
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
