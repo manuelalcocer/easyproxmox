@@ -40,9 +40,9 @@ class DataBase:
         self.conn.commit()
         self.CloseConn()
 
-    def InfoCenter(self, **kwargs):
+    def InfoCenter(self, centername):
         self.CreateConn()
-        self.cur.execute("""select * from centros_de_datos where nombre = %(centername)s""", kwargs)
+        self.cur.execute("""select * from centros_de_datos where nombre = %s""", centername)
         infocenter = self.cur.fetchall()
         return infocenter
 
