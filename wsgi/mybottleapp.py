@@ -1,9 +1,11 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
 from bottle import route, default_app, template, static_file, request
 
 from eproxlib.datacenter import DataCenter as MyDataCenter
 from eproxlib.datacenter import DataBase as MyDataBase
 
-## inicialización de la web
+## inicializacion de la web
 global proxdb
 global proxhome
 
@@ -16,7 +18,7 @@ def index():
     proxdb.Actualize()
     return template('main.tpl', dcdb = proxdb)
 
-## zona de configuración
+## zona de configuracion
 @route('/configureEP')
 def configureEP():
     global proxdb
