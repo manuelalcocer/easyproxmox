@@ -80,7 +80,7 @@ def manage(name):
     return template('manage.tpl', name = name, dcdb = proxdb)
 
 @route('/manage/MV/<centername>')
-def manageMV(name):
+def manageMV(centername):
     global proxdb
     global proxhome
     if not proxhome.creds['cookie']:
