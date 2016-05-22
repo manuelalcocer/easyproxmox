@@ -83,6 +83,7 @@ def manage(centername):
 
 @route('/manage/MV/<centername>')
 def manageMV(centername):
+    global proxhome
     #try:
         #if proxhome.creds['cookie']:
         #    return template('manage_mv.tpl', centername = centername)
