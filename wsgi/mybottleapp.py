@@ -29,6 +29,9 @@ def login():
     proxhome.creds['password'] = request.forms.get('password')
 
     proxhome.FetchCreds()
+    if proxhome.creds['cookie']:
+        source_site = request.forms.get('source')
+        redirect('/manage/MV/%s')
     proxhome.FetchNodeList()
 
     return proxhome.json_nodelist['data'][0]['node']
@@ -82,7 +85,7 @@ def manageMV(name):
     global proxhome
     checkcreds = proxhome.CheckCreds()
     if not checkcreds:
-        return template('login.tpl', source = '/manage/MV/%s' % centername)
+        return template('login.tpl', source = '/manage/MV/%s' % centername, centername = centername)
     else:
         return template('manage_mv.tpl', centername = centername)
 

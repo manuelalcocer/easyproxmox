@@ -12,6 +12,7 @@
         <input type="text" name="username" autofocus="autofocus"><br>
         Contraseña:<br>
             <input type="password" name="password">
+            <input type="hidden" name="source" value="{{source}}">
             <input type="submit" value="Enviar">
     </form>
     </div>
