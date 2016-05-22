@@ -6,6 +6,8 @@ from eproxlib.datacenter import DataCenter as MyDataCenter
 from eproxlib.datacenter import DataBase as MyDataBase
 
 ## inicializacion de la web
+proxdb = ''
+proxhome = ''
 
 @route('/')
 def index():
