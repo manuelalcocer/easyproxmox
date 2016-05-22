@@ -43,7 +43,7 @@ class DataBase:
     def InfoCenter(self, **kwargs):
         self.CreateConn()
         self.cur.execute("""select * from centros_de_datos where nombre = %(centername)s;""", kwargs)
-        self.infocenter = self.cur.fetchall()
+        self.infocenter = self.cur.fetchone()
 
 class DataCenter:
     def __init__(self, id_name):
