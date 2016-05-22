@@ -22,17 +22,16 @@ def index():
 def login(centername):
     global proxdb
     proxdb.InfoCenter(centername=centername)
-    return proxdb.infocenter[0]
-    #proxhome = MyDataCenter(centerinfo[0])
-    #proxhome.https_url = centerinfo[1]
-    #proxhome.port = centerinfo[2]
-    #proxhome.creds['username'] = request.forms.get('username')
-    #proxhome.creds['password'] = request.forms.get('password')
+    proxhome = MyDataCenter(proxdb.infocenter[0])
+    proxhome.https_url = proxdb.infocenter[1]
+    proxhome.port = proxdb.infocenter[2]
+    proxhome.creds['username'] = request.forms.get('username')
+    proxhome.creds['password'] = request.forms.get('password')
 
-    #proxhome.FetchCreds()
-    #if proxhome.creds['cookie']:
-    #    source_site = request.forms.get('source')
-    #    redirect('/manage/MV/%s')
+    proxhome.FetchCreds()
+    if proxhome.creds['cookie']:
+        source_site = request.forms.get('source')
+        redirect('/manage/MV/%s')
     #proxhome.FetchNodeList()
 
     #return proxhome.json_nodelist['data'][0]['node']
