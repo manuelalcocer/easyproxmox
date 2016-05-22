@@ -41,7 +41,7 @@ class DataCenter:
         self.api_ticket = '/access/ticket'
         self.creds = {}
 
-    def SetParams(self, **kwargs)
+    def SetParams(self, **kwargs):
         self.https_url = kwargs['url']
         self.port = kwargs['port']
         self.creds['username'] = kwargs['username']
