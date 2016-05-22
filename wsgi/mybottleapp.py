@@ -21,7 +21,7 @@ def index():
 @route('/login/<centername>', method='POST')
 def login(centername):
     global proxdb
-    centerinfo = proxdb.InfoCenter(centername)
+    centerinfo = proxdb.InfoCenter(centername=centername)
     proxhome = MyDataCenter(centerinfo[0])
     proxhome.https_url = centerinfo[1]
     proxhome.port = centerinfo[2]
