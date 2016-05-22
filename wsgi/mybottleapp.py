@@ -7,14 +7,12 @@ from eproxlib.datacenter import DataBase as MyDataBase
 def index():
     # inicializa al base de datos, con el nombre proxdb
     # la base de datos es la misma para todos los centros de datos 'proxdb'
-    global proxdb
     proxdb = MyDataBase('easyproxmox')
     proxdb.Actualize()
     return template('main.tpl', dcdb = proxdb)
 
 @route('/fetchtoken', method='POST')
 def fetchtoken():
-    global proxhome
     proxhome = MyDataCenter('nashgul')
     proxhome.https_url = 'https://proxmox.nashgul.com.es'
     proxhome.creds['username'] = request.forms.get('username')
