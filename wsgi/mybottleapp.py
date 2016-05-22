@@ -86,7 +86,7 @@ def manageMV(centername):
     global proxhome
     try:
         if len(proxhome.creds['cookie']) > 1:
-            return template('manage_mv.tpl', centername = centername)
+            return template('managemv.tpl', centername = centername)
     except:
         redirect('/login/%s' % centername)
 
