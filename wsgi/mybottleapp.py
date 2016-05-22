@@ -61,13 +61,13 @@ def createdatacenter():
     port = request.forms.get('port')
     if len(port) < 1:
         port = '443'
-    nameondb = request.forms.get('name')
-    createDC = MyDataCenter(nameondb)
-    createDC.SetParams(username = username, password = password, url = url, port = port)
+    centername = request.forms.get('name')
+    createDC = MyDataCenter(centername)
+    createDC.SetParams(username = username, password = password, url = 'https://' + url, port = port)
     createDC.FetchCreds()
     if createDC.creds.has_key('cookie'):
-        proxdb.InsertDataCenter(name = nameondb,url = url, port = port)
-        proxdb.InsertUser(centername = nameondb, username = username)
+        proxdb.InsertDataCenter(centername = centername, url = 'https://' + url, port = port)
+        proxdb.InsertUser(centername = centername, username = username)
         return template('controlpanel.tpl', dcdb = proxdb)
     else:
         return 'hubo un fallo'

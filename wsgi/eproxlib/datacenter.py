@@ -30,7 +30,7 @@ class DataBase:
 
     def InsertDataCenter(self, **kwargs):
         self.CreateConn()
-        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url, puerto) values (%(name)s, %(url)s, %(port)s)""", kwargs)
+        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url, puerto) values (%(centername)s, %(url)s, %(port)s)""", kwargs)
         self.conn.commit()
         self.CloseConn()
 
@@ -56,14 +56,14 @@ class DataCenter:
         self.creds = {}
 
     def SetParams(self, **kwargs):
-        self.https_url = 'https://' + kwargs['url']
+        self.https_url = kwargs['url']
         self.port = kwargs['port']
         self.creds['username'] = kwargs['username']
         self.creds['password'] = kwargs['password']
 
     def FetchCreds(self):
         parameters_list = { 'username' : self.creds['username'] + '@pam', 'password' : self.creds['password'] }
-        self.api_root = self.https_url + self.api_address
+        self.api_root = self.https_url + ':' + self.port + self.api_address
         self.creds_response = requests.post(self.api_root + self.api_ticket, params = parameters_list, verify = False)
         self.json_creds = loads(self.creds_response.text)
         self.creds['cookie'] = { 'PVEAuthCookie' : self.json_creds['data']['ticket'] }
