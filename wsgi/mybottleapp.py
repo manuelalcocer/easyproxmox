@@ -6,8 +6,6 @@ from eproxlib.datacenter import DataCenter as MyDataCenter
 from eproxlib.datacenter import DataBase as MyDataBase
 
 ## inicializacion de la web
-global proxdb
-global proxhome
 
 @route('/')
 def index():
@@ -43,12 +41,10 @@ def FetchCreds(centername):
 ## zona de configuracion
 @route('/configureEP')
 def configureEP():
-    global proxdb
     return template('configure_ep.tpl', dcdb = proxdb)
 
 @route('/controlpanel', method='POST')
 def controlpanel():
-    global proxdb
     password = request.forms.get('password')
     if password == proxdb.dbpassword:
         return template('controlpanel.tpl', dcdb = proxdb)
@@ -57,7 +53,6 @@ def controlpanel():
 
 @route('/createdatacenter', method='POST')
 def createdatacenter():
-    global proxdb
     username = request.forms.get('username')
     password = request.forms.get('password')
     url = request.forms.get('url')
@@ -78,12 +73,10 @@ def createdatacenter():
 ## Zona de acciones
 @route('/manage/<centername>')
 def manage(centername):
-    global proxhome
     return template('manage.tpl', centername = centername)
 
 @route('/manage/MV/<centername>')
 def manageMV(centername):
-    global proxhome
     try:
         if len(proxhome.creds['cookie']) > 1:
             return template('managemv.tpl', centername = centername)
