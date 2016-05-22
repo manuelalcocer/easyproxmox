@@ -24,9 +24,9 @@ class DataBase:
 
     def GenListDataCenters(self):
         self.Actualize()
-        self.htmllist = '<ul>'
+        self.htmllist = '<ul><li>Lista</li>'
         for dc in self.datacenter['list']:
-            self.htmllist = self.htmllist + '<il>%s</il>'
+            self.htmllist = self.htmllist + '<li>%s</li>'
         self.htmllist = self.htmllist + '</ul>'
 
 class DataCenter:

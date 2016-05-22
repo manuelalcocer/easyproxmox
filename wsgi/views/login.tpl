@@ -8,7 +8,7 @@
     <!-- insert the page content here -->
     <form action='/fetchtoken' method="post">
         Usuario:<br>
-            <input type="text" name="username" autofocus="autofocus"><br>
+        <input type="text" name="username" autofocus="autofocus"><br>
         Contraseña:<br>
             <input type="password" name="password">
             <input type="submit" value="Enviar">
