@@ -33,7 +33,7 @@ def FetchCreds(centername):
 
     proxhome.FetchCreds()
     if proxhome.creds['cookie']:
-        return template('manage.tpl', centername = centername)
+        redirect('/manage/%s' % centername)
     #proxhome.FetchNodeList()
 
     #return proxhome.json_nodelist['data'][0]['node']
@@ -75,11 +75,16 @@ def createdatacenter():
         return 'hubo un fallo'
 
 ## Zona de acciones
+@route('/manage/<centername>')
+def manage(centername):
+    global proxhome
+    return template('manage.tpl', centername = centername)
+
 @route('/manage/MV/<centername>')
 def manageMV(centername):
     try:
-        if proxhome.creds['cookie']:
-            return template('manage_mv.tpl', centername = centername)
+        return proxhome.creds['cookie']
+            #return template('manage_mv.tpl', centername = centername)
     except:
         redirect('/login/%s' % centername)
 
