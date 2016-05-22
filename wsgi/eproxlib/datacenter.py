@@ -29,10 +29,8 @@ class DataBase:
             self.htmllist = self.htmllist + '<li>%s</li>'
         self.htmllist = self.htmllist + '</ul>'
 
-    def InsertDataCenter(self, **kwargs):
-        name = kwargs['name']
-        url = kwargs['url']
-        self.cur.execute('''INSERT INTO centros_de_datos (nombre, url) values ( %s, %s )''', (name, url))
+    def InsertDataCenter(self, name, url):
+        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url) values ( %s, %s )""", (name, url))
 
 class DataCenter:
     def __init__(self, id_name):
