@@ -1,12 +1,13 @@
 <%
-    menulist = ([   { 'name' : 'Home' , 'active' : True , 'url' : '/' },
-                    { 'name' : 'Configurar EP' , 'active' : False , 'url' : '/configureEP' } ])
-    include('header.tpl', title='Configurar EP', menulist = menulist)
+    menulist = ([   { 'name' : 'Home' , 'active' : False , 'url' : '/' },
+                    { 'name' : 'Login' , 'active' : True , 'url' : '/login' } ])
+    include('header.tpl', title='Login', menulist = menulist)
     include('sidebar.tpl', title='sidebar')
 %>
     <div id="content">
     <!-- insert the page content here -->
-    <form action='/fetchtoken' method="post">
+    <h2>Ingrese datos del Centro de Datos: {{centername}}</h2>
+    <form action='/login/{{centername}}' method="post">
         Usuario:<br>
         <input type="text" name="username" autofocus="autofocus"><br>
         Contraseña:<br>

@@ -40,6 +40,12 @@ class DataBase:
         self.conn.commit()
         self.CloseConn()
 
+    def InfoCenter(self, **kwargs):
+        self.CreateConn()
+        self.cur.execute("""select * from centros_de_datos where nombre = %(centername)s""", kwargs)
+        infocenter = self.cur.fetchall()
+        return infocenter
+
 class DataCenter:
     def __init__(self, id_name):
         self.id_name = id_name
@@ -67,6 +73,9 @@ class DataCenter:
     def FetchNodeList(self):
         self.NodePath = self.api_root + '/nodes'
         self.json_nodelist = loads(requests.get(self.NodePath, cookies = self.creds['cookie'], verify = False).text)
+
+    def FetchMVList(self):
+        pass
 
 if __name__ == '__main__':
     Main()

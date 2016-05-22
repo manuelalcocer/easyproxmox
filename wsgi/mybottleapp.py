@@ -18,6 +18,22 @@ def index():
     proxdb.Actualize()
     return template('main.tpl', dcdb = proxdb)
 
+@route('/login/<centername>', method='POST')
+def login():
+    global proxdb
+    centerinfo = proxdb.InfoCenter(centername)
+    proxhome = MyDataCenter(centerinfo[0])
+    proxhome.https_url = centerinfo[1]
+    proxhome.port = centerinfo[2]
+    proxhome.creds['username'] = request.forms.get('username')
+    proxhome.creds['password'] = request.forms.get('password')
+
+    proxhome.FetchCreds()
+    proxhome.FetchNodeList()
+
+    return proxhome.json_nodelist['data'][0]['node']
+
+
 ## zona de configuracion
 @route('/configureEP')
 def configureEP():
@@ -60,17 +76,15 @@ def manage(name):
     global proxdb
     return template('manage.tpl', name = name, dcdb = proxdb)
 
-@route('/fetchtoken', method='POST')
-def fetchtoken():
-    proxhome = MyDataCenter('nashgul')
-    proxhome.https_url = 'https://proxmox.nashgul.com.es'
-    proxhome.creds['username'] = request.forms.get('username')
-    proxhome.creds['password'] = request.forms.get('password')
-
-    proxhome.FetchCreds()
-    proxhome.FetchNodeList()
-
-    return proxhome.json_nodelist['data'][0]['node']
+@route('/manage/MV/<centername>')
+def manageMV(name):
+    global proxdb
+    global proxhome
+    checkcreds = proxhome.CheckCreds()
+    if not checkcreds:
+        return template('login.tpl', source = '/manage/MV/%s' % centername)
+    else:
+        return template('manage_mv.tpl', centername = centername)
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
