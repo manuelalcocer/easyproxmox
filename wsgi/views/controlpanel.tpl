@@ -20,7 +20,7 @@
             <input type="password" name="password"><br>
             <input type="submit" value="Crear">
     </form>
-    % dcdb.GenListDataCenter()
+    % dcdb.GenListDataCenters()
     {{dcdb.htmllist}}
     <!-- to here -->
     </div>
