@@ -22,19 +22,20 @@ def index():
 def login(centername):
     global proxdb
     centerinfo = proxdb.InfoCenter(centername=centername)
-    proxhome = MyDataCenter(centerinfo[0])
-    proxhome.https_url = centerinfo[1]
-    proxhome.port = centerinfo[2]
-    proxhome.creds['username'] = request.forms.get('username')
-    proxhome.creds['password'] = request.forms.get('password')
+    return centerinfo
+    #proxhome = MyDataCenter(centerinfo[0])
+    #proxhome.https_url = centerinfo[1]
+    #proxhome.port = centerinfo[2]
+    #proxhome.creds['username'] = request.forms.get('username')
+    #proxhome.creds['password'] = request.forms.get('password')
 
-    proxhome.FetchCreds()
-    if proxhome.creds['cookie']:
-        source_site = request.forms.get('source')
-        redirect('/manage/MV/%s')
-    proxhome.FetchNodeList()
+    #proxhome.FetchCreds()
+    #if proxhome.creds['cookie']:
+    #    source_site = request.forms.get('source')
+    #    redirect('/manage/MV/%s')
+    #proxhome.FetchNodeList()
 
-    return proxhome.json_nodelist['data'][0]['node']
+    #return proxhome.json_nodelist['data'][0]['node']
 
 
 ## zona de configuracion
