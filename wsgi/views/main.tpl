@@ -9,7 +9,7 @@
     % if len(datacenterlist) >= 1:
             <ul>
     %   for linea in datacenterlist:
-            <li> {{linea}} </li>
+            <li> {{linea[1]}} </li>
     %   end
             </ul>
     % else:
