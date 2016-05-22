@@ -77,12 +77,12 @@ def createdatacenter():
 def manage(centername):
     return template('manage.tpl', centername = centername)
 
-@route('/manage/MV/<centername>')
-def manageMV(centername):
+@route('/node/MV/<centername>')
+def nodeMV(centername):
+    global proxhome
     try:
-        #if len(proxhome.creds['cookie']) > 1:
-            #return template('managemv.tpl', centername = centername)
-        return 'A: ' + proxhome.creds['cookie']
+        if len(proxhome.creds['cookie']) > 1:
+            return template('managemv.tpl', centername = centername)
     except:
         redirect('/login/%s' % centername)
 

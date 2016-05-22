@@ -15,7 +15,7 @@
       <div id="logo">
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="index.html">Easy<span class="logo_colour">Proxmox</span></a></h1>
+          <h1><a href="/">Easy<span class="logo_colour">Proxmox</span></a></h1>
           <h2>Interfaz amigable para Proxmox.</h2>
         </div>
       </div>
