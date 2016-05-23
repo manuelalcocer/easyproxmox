@@ -25,8 +25,8 @@ def index():
     # inicializa al base de datos, con el nombre proxdb
     # la base de datos es la misma para todos los centros de datos 'proxdb'
     proxdb = MyDataBase('easyproxmox')
-    proxdb.Actualize()
     sset('db', proxdb)
+    proxdb.Actualize()
     return template('main.tpl', dcdb = proxdb)
 
 @route('/login/<centername>')
