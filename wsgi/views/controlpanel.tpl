@@ -1,4 +1,6 @@
 <%
+    import exproxlib.proxdatabase as Mydb
+
     menulist = ([   { 'name' : 'Home' , 'active' : False , 'url' : '/' },
                     { 'name' : 'Configurar EP' , 'active' : True , 'url' : '/controlpanel' } ])
     include('header.tpl', title='Configurar EP', menulist = menulist)
@@ -20,14 +22,14 @@
             <input type="submit" value="Crear">
     </form>
 
-    % dcdb.Actualize()
-    % if len(dcdb.datacenter['list']) >= 1:
+    % conn, cur = Mydb.CreateConn(dcdb)
+    % datacenterlist = Mydb.DataCenterList(conn, cur)
+    % if len(datacenterlist) >= 1:
             <ul>
     %   for linea in dcdb.datacenter['list']:
-            <li><a href="/manage/{{linea[0]}}">{{linea[0]}}</a></li>
+            <li><a href="/login/{{linea[0]}}">{{linea[0]}}</a></li>
     %   end
             </ul>
-    % end
     <!-- to here -->
     </div>
 </div>
