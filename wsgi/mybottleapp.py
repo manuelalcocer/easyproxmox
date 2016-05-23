@@ -17,7 +17,7 @@ session_opts = {
     'session.data_dir': './data',
     'session.auto': True
 }
-app = SessionMiddleware(deafult_app(), session_opts)
+app = SessionMiddleware(default_app(), session_opts)
 
 
 @route('/')
