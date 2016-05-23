@@ -19,7 +19,6 @@
             <h3>No Hay ningún <b>Centro de Datos</b> configurado.</h3>
             <p>Vaya a <a href="/configureEP">Configurar EP</a>.</p>
     % end
-    % Mydb.CloseConn(conn, cur)
     <!-- to here -->
     </div>
 </div>
