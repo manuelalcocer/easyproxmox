@@ -1,5 +1,5 @@
 <%
-    import exproxlib.proxdatabase as Mydb
+    import eproxlib.proxdatabase as Mydb
 
     menulist = ([   { 'name' : 'Home' , 'active' : False , 'url' : '/' },
                     { 'name' : 'Configurar EP' , 'active' : True , 'url' : '/controlpanel' } ])
