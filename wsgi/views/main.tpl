@@ -1,4 +1,6 @@
 <%
+    import eproxlib.proxdatabase as Mydb
+
     menulist = ([   { 'name' : 'Home' , 'active' : True , 'url' : '/' },
                     { 'name' : 'Configurar EP' , 'active' : False , 'url' : '/configureEP' } ])
     include('header.tpl', title='Home', menulist = menulist)
@@ -6,8 +8,9 @@
 %>
     <div id="content">
     <!-- insert the page content here -->
-    % dcdb.Actualize()
-    % if len(dcdb.datacenter['list']) >= 3:
+    % conn, cur = Mydb.CreateConn(dcdb.dbname, dcdb.dbuser, dcdb.dbhost, dcdb.password)
+    % datacenterlist = Mydb.DataCenterList(conn, cur)
+    % if len(datacenterlist) >= 1:
             <ul>
     %   for linea in dcdb.datacenter['list']:
             <li><a href="/login/{{linea[0]}}">{{linea[0]}}</a></li>
