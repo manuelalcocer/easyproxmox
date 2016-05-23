@@ -51,12 +51,12 @@ def FetchCreds(centername):
 ## zona de configuracion
 @route('/configureEP')
 def configureEP():
-    return template('configure_ep.tpl', dcdb = proxdb)
+    return template('configure_ep.tpl')
 
 @route('/controlpanel', method='POST')
 def controlpanel():
     password = request.forms.get('password')
-    if password == sget('db').password:
+    if password == sget('db').dbpassword:
         return template('controlpanel.tpl', dcdb = sget('db'))
     else:
         return 'EENNGG!  xD'
