@@ -12,7 +12,7 @@ from eproxlib.datacenter import sset, sget, sdelete, sislogin
 session_opts = {
     'session.type': 'file',
     'session.cookie_expires': 300,
-    'session.data_dir': './data',
+    'session.data_dir': os.environ['OPENSHIFT_DATA_DIR'],
     'session.auto': True
 }
 app = SessionMiddleware(default_app(), session_opts)
