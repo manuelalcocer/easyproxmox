@@ -31,19 +31,25 @@ class DataBase:
 
     def InsertDataCenter(self, **kwargs):
         self.CreateConn()
-        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url, puerto) values (%(centername)s, %(url)s, %(port)s)""", kwargs)
+        centername = kwargs['centername']
+        url = kwargs['url']
+        port = kwargs['port']
+        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url, puerto) values (%s, %s, %s)""", (centername, url, port))
         self.conn.commit()
         self.CloseConn()
 
     def InsertUser(self, **kwargs):
         self.CreateConn()
-        self.cur.execute("""INSERT INTO usuarios (nombre, centro) values (%(username)s, %(centername)s)""", kwargs)
+        username = kwargs['username']
+        centername = kwargs['centername']
+        self.cur.execute("""INSERT INTO usuarios (nombre, centro) values (%s, %s)""", (username, centername))
         self.conn.commit()
         self.CloseConn()
 
     def InfoCenter(self, **kwargs):
         self.CreateConn()
-        self.cur.execute("""select * from centros_de_datos where nombre = %(centername)s;""", kwargs)
+        centername = kwargs['centername']
+        self.cur.execute("""select * from centros_de_datos where nombre = %s;""", centername)
         self.infocenter = self.cur.fetchone()
         self.CloseConn()
 
