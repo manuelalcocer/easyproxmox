@@ -1,3 +1,5 @@
+import psycopg2
+
 def CreateConn(dbname, dbuser, dbhost, dbpassword):
     try:
         conn = psycopg2.connect("dbname=%s user=%s host=%s password=%s" %(dbname, dbuser, dbhost, dbpassword))
