@@ -8,7 +8,7 @@
 %>
     <div id="content">
     <!-- insert the page content here -->
-    % conn, cur = Mydb.CreateConn(dcdb.dbname, dcdb.dbuser, dcdb.dbhost, dcdb.dbpassword)
+    % conn, cur = Mydb.CreateConn(dcdb)
     % datacenterlist = Mydb.DataCenterList(conn, cur)
     % if len(datacenterlist) >= 1:
             <ul>
