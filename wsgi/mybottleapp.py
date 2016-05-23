@@ -10,6 +10,8 @@ from eproxlib.datacenter import DataCenter as MyDataCenter
 from eproxlib.datacenter import DataBase as MyDataBase
 from eproxlib.datacenter import sset, sget, sdelete, sislogin
 
+import eproxlib.proxdatabase as Mydb
+
 
 session_opts = {
     'session.type': 'file',
@@ -75,8 +77,8 @@ def createdatacenter():
     createDC.FetchCreds(username = username, password = password)
     proxdb = sget('db')
     if createDC.creds.has_key('cookie'):
-        proxdb.InsertDataCenter(centername = centername, url = createDC.https_url, port = createDC.port)
-        proxdb.InsertUser(centername = centername, username = username)
+        Mydb.InsertDataCenter(centername = centername, url = createDC.https_url, port = createDC.port)
+        Mydb.InsertUser(centername = centername, username = username)
         return template('controlpanel.tpl', dcdb = proxdb)
     else:
         return 'hubo un fallo'

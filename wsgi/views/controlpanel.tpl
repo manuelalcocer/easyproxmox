@@ -21,12 +21,10 @@
             <input type="password" name="password"><br>
             <input type="submit" value="Crear">
     </form>
-
-    % conn, cur = Mydb.CreateConn(dcdb)
-    % datacenterlist = Mydb.DataCenterList(conn, cur)
+    % datacenterlist = Mydb.DataCenterList(dcdb)
     % if len(datacenterlist) >= 1:
             <ul>
-    %   for linea in dcdb.datacenter['list']:
+    %   for linea in datacenterlist:
             <li><a href="/login/{{linea[0]}}">{{linea[0]}}</a></li>
     %   end
             </ul>

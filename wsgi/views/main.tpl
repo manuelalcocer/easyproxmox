@@ -8,8 +8,7 @@
 %>
     <div id="content">
     <!-- insert the page content here -->
-    % conn, cur = Mydb.CreateConn(dcdb)
-    % datacenterlist = Mydb.DataCenterList(conn, cur)
+    % datacenterlist = Mydb.DataCenterList(dcdb)
     % if len(datacenterlist) >= 1:
             <ul>
     %   for linea in dcdb.datacenter['list']:
