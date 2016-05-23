@@ -56,14 +56,8 @@ class DataCenter:
         self.api_ticket = '/access/ticket'
         self.creds = {}
 
-    def SetParams(self, **kwargs):
-        self.https_url = kwargs['url']
-        self.port = kwargs['port']
-        self.creds['username'] = kwargs['username']
-        self.creds['password'] = kwargs['password']
-
-    def FetchCreds(self):
-        parameters_list = { 'username' : self.creds['username'] + '@pam', 'password' : self.creds['password'] }
+    def FetchCreds(self, **kwargs):
+        parameters_list = { 'username' : kwargs['username'] + '@pam', 'password' : kwargs['password'] }
         self.api_root = self.https_url + ':' + str(self.port) + self.api_address
         self.creds_response = requests.post(self.api_root + self.api_ticket, params = parameters_list, verify = False)
         self.json_creds = loads(self.creds_response.text)
@@ -77,7 +71,7 @@ class DataCenter:
 
 def sset(key,value):
     s = request.environ.get('beaker.session')
-    s[key]=value
+    s[key] = value
 
 def sget(key):
     s = request.environ.get('beaker.session')
@@ -92,7 +86,7 @@ def sdelete():
 
 def sislogin():
     s = request.environ.get('beaker.session')
-    return 'user' in s
+    return s['dc'].creds['cookie']['PVEAuthCookie']
 
 if __name__ == '__main__':
     Main()

@@ -24,9 +24,9 @@ app = SessionMiddleware(default_app(), session_opts)
 def index():
     # inicializa al base de datos, con el nombre proxdb
     # la base de datos es la misma para todos los centros de datos 'proxdb'
-    global proxdb
     proxdb = MyDataBase('easyproxmox')
     proxdb.Actualize()
+    sset('db', proxdb)
     return template('main.tpl', dcdb = proxdb)
 
 @route('/login/<centername>')
@@ -35,24 +35,18 @@ def login(centername):
 
 @route('/FetchCreds/<centername>', method='POST')
 def FetchCreds(centername):
-    global proxhome
     proxdb.InfoCenter(centername=centername)
     proxhome = MyDataCenter(proxdb.infocenter[0])
     proxhome.https_url = proxdb.infocenter[1]
     proxhome.port = proxdb.infocenter[2]
-    proxhome.creds['username'] = request.forms.get('username')
-    proxhome.creds['password'] = request.forms.get('password')
+    username = request.forms.get('username')
+    password = request.forms.get('password')
 
-    proxhome.FetchCreds()
+    proxhome.FetchCreds(username = username, password = password)
     if proxhome.creds['cookie']['PVEAuthCookie']:
-        sset('user', proxhome.creds['username'])
-        sset('password', proxhome.creds['password'])
-        sset('ticket', proxhome.creds['cookie']['PVEAuthCookie'])
-        sset('csfr', proxhome.creds['header']['CSRFPreventionToken'])
-        sset('objeto', proxhome)
+        sset('dc', proxhome)
         redirect('/manage/%s' % centername)
     #proxhome.FetchNodeList()
-
     #return proxhome.json_nodelist['data'][0]['node']
 
 ## zona de configuracion
@@ -63,8 +57,8 @@ def configureEP():
 @route('/controlpanel', method='POST')
 def controlpanel():
     password = request.forms.get('password')
-    if password == proxdb.dbpassword:
-        return template('controlpanel.tpl', dcdb = proxdb)
+    if password == sget('db').password:
+        return template('controlpanel.tpl', dcdb = sget('db'))
     else:
         return 'EENNGG!  xD'
 
@@ -72,16 +66,16 @@ def controlpanel():
 def createdatacenter():
     username = request.forms.get('username')
     password = request.forms.get('password')
-    url = request.forms.get('url')
     port = request.forms.get('port')
     if len(port) < 1:
         port = '443'
     centername = request.forms.get('name')
     createDC = MyDataCenter(centername)
-    createDC.SetParams(username = username, password = password, url = 'https://' + url, port = port)
-    createDC.FetchCreds()
+    createDC.https_url = 'https://' + request.forms.get('url')
+    createDC.port = port
+    createDC.FetchCreds(username = username, password = password)
     if createDC.creds.has_key('cookie'):
-        proxdb.InsertDataCenter(centername = centername, url = 'https://' + url, port = port)
+        proxdb.InsertDataCenter(centername = centername, createDC.https_url, createDC.port = port)
         proxdb.InsertUser(centername = centername, username = username)
         return template('controlpanel.tpl', dcdb = proxdb)
     else:
