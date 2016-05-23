@@ -8,7 +8,7 @@
     <div id="content">
     <!-- insert the page content here -->
     <ul>
-        <li><a href="/node/MV/{{centername}}">Máquinas virtuales</a></li>
+        <li><a href="/node/MV/{{centername}}/{{ticket}}">Máquinas virtuales</a></li>
         <li><a href="/node/LXC/{{centername}}">Contenedores</a></li>
         <li><a href="/node/TPL/{{centername}}">Plantillas</a></li>
     </ul>

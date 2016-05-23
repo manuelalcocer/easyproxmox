@@ -2,12 +2,23 @@
 # -*- coding: utf-8 -*-
 from bottle import route, default_app, template, static_file, request, redirect
 
+from beaker.middleware import SessionMiddleware
+
 from eproxlib.datacenter import DataCenter as MyDataCenter
 from eproxlib.datacenter import DataBase as MyDataBase
 
 ## inicializacion de la web
 proxdb = ''
 proxhome = ''
+
+session_opts = {
+    'session.type': 'file',
+    'session.cookie_expires': 300,
+    'session.data_dir': './data',
+    'session.auto': True
+}
+app = SessionMiddleware(deafult_app(), session_opts)
+
 
 @route('/')
 def index():
@@ -86,6 +97,7 @@ def nodeMV(centername):
     except:
         redirect('/login/%s' % centername)
 
+
 ## Zona de bottle
 @route('/static/<filepath:path>')
 def server_static(filepath):
@@ -97,4 +109,6 @@ from bottle import TEMPLATE_PATH
 
 TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi/views/'))
 
-application=default_app()
+
+#application=default_app()
+application=app

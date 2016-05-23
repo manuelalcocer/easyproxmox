@@ -47,8 +47,8 @@ class DataBase:
         self.CloseConn()
 
 class DataCenter:
-    def __init__(self, id_name):
-        self.id_name = id_name
+    def __init__(self, centername):
+        self.centername = centername
         self.https_url = ''
         self.port = ''
         self.api_address = '/api2/json'
@@ -73,9 +73,6 @@ class DataCenter:
     def FetchNodeList(self):
         self.NodePath = self.api_root + '/nodes'
         self.json_nodelist = loads(requests.get(self.NodePath, cookies = self.creds['cookie'], verify = False).text)
-
-    def FetchMVList(self):
-        pass
 
 if __name__ == '__main__':
     Main()
