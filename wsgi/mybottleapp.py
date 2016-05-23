@@ -6,10 +6,8 @@ from beaker.middleware import SessionMiddleware
 
 from eproxlib.datacenter import DataCenter as MyDataCenter
 from eproxlib.datacenter import DataBase as MyDataBase
+from eproxlib.datacenter import sset, sget, sdelete, sislogin
 
-## inicializacion de la web
-proxdb = ''
-proxhome = ''
 
 session_opts = {
     'session.type': 'file',
@@ -19,7 +17,7 @@ session_opts = {
 }
 app = SessionMiddleware(default_app(), session_opts)
 
-
+## inicializacion de la web
 @route('/')
 def index():
     # inicializa al base de datos, con el nombre proxdb
@@ -44,12 +42,15 @@ def FetchCreds(centername):
     proxhome.creds['password'] = request.forms.get('password')
 
     proxhome.FetchCreds()
-    if proxhome.creds['cookie']:
+    if proxhome.creds['cookie']['PVEAuthCookie']:
+        sset('user', proxhome.creds['username'])
+        sset('password', proxhome.creds['password'])
+        sset('ticket', proxhome.creds['cookie']['PVEAuthCookie'])
+        sset('csfr', proxhome.creds['header']['CSRFPreventionToken'])
         redirect('/manage/%s' % centername)
     #proxhome.FetchNodeList()
 
     #return proxhome.json_nodelist['data'][0]['node']
-
 
 ## zona de configuracion
 @route('/configureEP')
@@ -90,13 +91,11 @@ def manage(centername):
 
 @route('/node/MV/<centername>')
 def nodeMV(centername):
-    global proxhome
     try:
-        if len(proxhome.creds['cookie']['PVEAuthCookie']) > 1:
+        if sislogin():
             return template('managemv.tpl', centername = centername)
     except:
         redirect('/login/%s' % centername)
-
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
@@ -108,7 +107,6 @@ import os
 from bottle import TEMPLATE_PATH
 
 TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi/views/'))
-
 
 #application=default_app()
 application=app

@@ -1,3 +1,4 @@
+from bottle import request
 from json import loads, dumps
 import os
 import psycopg2
@@ -73,6 +74,25 @@ class DataCenter:
     def FetchNodeList(self):
         self.NodePath = self.api_root + '/nodes'
         self.json_nodelist = loads(requests.get(self.NodePath, cookies = self.creds['cookie'], verify = False).text)
+
+def sset(key,value):
+    s = request.environ.get('beaker.session')
+    s[key]=value
+
+def sget(key):
+    s = request.environ.get('beaker.session')
+    if key in s:
+        return s[key]
+    else:
+        return ""
+
+def sdelete():
+    s = request.environ.get('beaker.session')
+    s.delete()
+
+def sislogin():
+    s = request.environ.get('beaker.session')
+    return 'user' in s
 
 if __name__ == '__main__':
     Main()
