@@ -7,7 +7,7 @@
     <div id="content">
     <!-- insert the page content here -->
     % dcdb.Actualize()
-    % if len(dcdb.datacenter['list']) >= 1:
+    % if len(dcdb.datacenter['list']) >= 3:
             <ul>
     %   for linea in dcdb.datacenter['list']:
             <li><a href="/login/{{linea[0]}}">{{linea[0]}}</a></li>
