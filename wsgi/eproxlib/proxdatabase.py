@@ -1,9 +1,10 @@
 import psycopg2
 
-def CreateConn(dbname, dbuser, dbhost, dbpassword):
+def CreateConn(dcdb):
     try:
-        conn = psycopg2.connect("dbname=%s user=%s host=%s password=%s" %(dbname, dbuser, dbhost, dbpassword))
-        return conn
+        conn = psycopg2.connect("dbname=%s user=%s host=%s password=%s" %(dcdb.dbname, dcdb.dbuser, dcdb.dbhost, dcdb.dbpassword))
+        cur = conn.cursor()
+        return conn, cur
     except:
         pass
 
