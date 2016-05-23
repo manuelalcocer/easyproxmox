@@ -8,7 +8,8 @@
 %>
     <div id="content">
     <!-- insert the page content here -->
-    % conn, cur = Mydb.CreateConn(dcdb.dbname, dcdb.dbuser, dcdb.dbhost, dcdb.dbpassword)
+    % conn = Mydb.CreateConn(dcdb.dbname, dcdb.dbuser, dcdb.dbhost, dcdb.dbpassword)
+    % cur = conn.cursor()
     % datacenterlist = Mydb.DataCenterList(conn, cur)
     % if len(datacenterlist) >= 1:
             <ul>
@@ -20,6 +21,7 @@
             <h3>No Hay ningún <b>Centro de Datos</b> configurado.</h3>
             <p>Vaya a <a href="/configureEP">Configurar EP</a>.</p>
     % end
+    % Mydb.CloseConn(conn, cur)
     <!-- to here -->
     </div>
 </div>

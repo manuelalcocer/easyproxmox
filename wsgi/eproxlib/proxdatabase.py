@@ -1,8 +1,7 @@
 def CreateConn(dbname, dbuser, dbhost, dbpassword):
     try:
         conn = psycopg2.connect("dbname=%s user=%s host=%s password=%s" %(dbname, dbuser, dbhost, dbpassword))
-        cur = conn.cursor()
-        return conn, cur
+        return conn
     except:
         pass
 
@@ -23,7 +22,7 @@ def InsertDataCenter(**kwargs):
     conn.commit()
     CloseConn(conn, cur)
 
-def InsertUser(self, **kwargs):
+def InsertUser(**kwargs):
     username = kwargs['username']
     centername = kwargs['centername']
     cur.execute("""INSERT INTO usuarios (nombre, centro) values (%s, %s)""", (username, centername))
