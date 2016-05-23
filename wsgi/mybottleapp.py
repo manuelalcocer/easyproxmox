@@ -74,10 +74,11 @@ def createdatacenter():
     createDC.https_url = 'https://' + request.forms.get('url')
     createDC.port = port
     createDC.FetchCreds(username = username, password = password)
+    proxdb = sget('db')
     if createDC.creds.has_key('cookie'):
-        sget('db').InsertDataCenter(centername = centername, createDC.https_url, createDC.port = port)
-        sget('db').InsertUser(centername = centername, username = username)
-        return template('controlpanel.tpl', dcdb = sget('db'))
+        proxdb.InsertDataCenter(centername = centername, createDC.https_url, createDC.port = port)
+        proxdb.InsertUser(centername = centername, username = username)
+        return template('controlpanel.tpl', dcdb = proxdb)
     else:
         return 'hubo un fallo'
 
@@ -90,8 +91,8 @@ def manage(centername):
 def nodeMV(centername):
     try:
         if sislogin():
-            objeto = sget('objeto')
-            ticket = objeto.creds['cookie']['PVEAuthCookie']
+            proxhome = sget('dc')
+            ticket = proxhome.creds['cookie']['PVEAuthCookie']
             return ticket
             #return template('managemv.tpl', centername = centername)
     except:
