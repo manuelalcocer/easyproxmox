@@ -19,16 +19,20 @@ def DataCenterList(dcdb):
     CloseConn(conn, cur)
     return datacenterlist
 
-def InsertDataCenter(**kwargs):
+def InsertDataCenter(dcdb, **kwargs):
+    conn, cur = CreateConn(dcdb)
     cur.execute("""INSERT INTO centros_de_datos (nombre, url, puerto) values (%(centername)s, %(url)s, %(port)s)""", kwargs)
     conn.commit()
     CloseConn(conn, cur)
 
-def InsertUser(**kwargs):
+def InsertUser(dcdb, **kwargs):
+    conn, cur = CreateConn(dcdb)
     cur.execute("""INSERT INTO usuarios (nombre, centro) values (%(username)s, %(centername)s)""", kwargs)
     conn.commit()
+    CloseConn(conn, cur)
 
-def InfoCenter(**kwargs):
+def InfoCenter(dcdb, **kwargs):
+    conn, cur = CreateConn(dcdb)
     cur.execute("""select * from centros_de_datos where nombre = %(centername)s;""", kwargs)
     infocenter = cur.fetchone()
     return infocenter
