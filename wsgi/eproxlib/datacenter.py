@@ -12,47 +12,6 @@ class DataBase:
         self.dbhost = os.environ['OPENSHIFT_POSTGRESQL_DB_HOST']
         self.datacenter = {}
 
-    def CreateConn(self):
-        try:
-            self.conn = psycopg2.connect("dbname=%s user=%s host=%s password=%s" %(self.dbname, self.dbuser, self.dbhost, self.dbpassword))
-            self.cur = self.conn.cursor()
-        except:
-            pass
-
-    def CloseConn(self):
-        self.cur.close()
-        self.conn.close()
-
-    def Actualize(self):
-        self.CreateConn()
-        self.cur.execute("""SELECT * from centros_de_datos;""")
-        self.datacenter['list'] = self.cur.fetchall()
-        self.CloseConn()
-
-    def InsertDataCenter(self, **kwargs):
-        self.CreateConn()
-        centername = kwargs['centername']
-        url = kwargs['url']
-        port = kwargs['port']
-        self.cur.execute("""INSERT INTO centros_de_datos (nombre, url, puerto) values (%s, %s, %s)""", (centername, url, port))
-        self.conn.commit()
-        self.CloseConn()
-
-    def InsertUser(self, **kwargs):
-        self.CreateConn()
-        username = kwargs['username']
-        centername = kwargs['centername']
-        self.cur.execute("""INSERT INTO usuarios (nombre, centro) values (%s, %s)""", (username, centername))
-        self.conn.commit()
-        self.CloseConn()
-
-    def InfoCenter(self, **kwargs):
-        self.CreateConn()
-        centername = kwargs['centername']
-        self.cur.execute("""select * from centros_de_datos where nombre = %s;""", centername)
-        self.infocenter = self.cur.fetchone()
-        self.CloseConn()
-
 class DataCenter:
     def __init__(self, centername):
         self.centername = centername
