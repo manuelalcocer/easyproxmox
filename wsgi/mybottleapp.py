@@ -14,7 +14,7 @@ from eproxlib.datacenter import sset, sget, sdelete, sislogin
 session_opts = {
     'session.type': 'file',
     'session.cookie_expires': 300,
-    'session.data_dir': os.environ['OPENSHIFT_DATA_DIR'],
+    'session.data_dir': os.environ['OPENSHIFT_DATA_DIR'] + '/beakersessions',
     'session.auto': True
 }
 app = SessionMiddleware(default_app(), session_opts)
@@ -49,6 +49,7 @@ def FetchCreds(centername):
         sset('password', proxhome.creds['password'])
         sset('ticket', proxhome.creds['cookie']['PVEAuthCookie'])
         sset('csfr', proxhome.creds['header']['CSRFPreventionToken'])
+        sset('objeto', proxhome)
         redirect('/manage/%s' % centername)
     #proxhome.FetchNodeList()
 
@@ -95,7 +96,10 @@ def manage(centername):
 def nodeMV(centername):
     try:
         if sislogin():
-            return template('managemv.tpl', centername = centername)
+            objeto = sget('objeto')
+            ticket = objeto.creds['cookie']['PVEAuthCookie']
+            return ticket
+            #return template('managemv.tpl', centername = centername)
     except:
         redirect('/login/%s' % centername)
 
