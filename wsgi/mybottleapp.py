@@ -76,7 +76,7 @@ def createdatacenter():
     createDC.FetchCreds(username = username, password = password)
     proxdb = sget('db')
     if createDC.creds.has_key('cookie'):
-        proxdb.InsertDataCenter(centername = centername, createDC.https_url, createDC.port = port)
+        proxdb.InsertDataCenter(centername = centername, url = createDC.https_url, port = createDC.port)
         proxdb.InsertUser(centername = centername, username = username)
         return template('controlpanel.tpl', dcdb = proxdb)
     else:
