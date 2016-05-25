@@ -32,12 +32,7 @@ def index():
 
 @route('/login/<centername>')
 def login(centername):
-    if sislogin():
-        lastpage = sget('lastpage')
-        if lastpage == '/manage':
-            redirect('/manage/%s' % centername)
-    else:
-        return template('login.tpl', centername = centername)
+    return template('login.tpl', centername = centername)
 
 @route('/FetchCreds/<centername>', method='POST')
 def FetchCreds(centername):
@@ -51,9 +46,8 @@ def FetchCreds(centername):
     proxhome.FetchCreds(username = username, password = password)
     if proxhome.creds['cookie']['PVEAuthCookie']:
         sset('dc', proxhome)
-        redirect('/manage/%s' % centername)
-    #proxhome.FetchNodeList()
-    #return proxhome.json_nodelist['data'][0]['node']
+        retpage = sget('returnpage')
+        redirect('%s/%s' %(retpage, centername))
 
 ## zona de configuracion
 @route('/configureEP')
@@ -91,7 +85,12 @@ def createdatacenter():
 ## Zona de acciones
 @route('/manage/<centername>')
 def manage(centername):
-    return template('manage.tpl', centername = centername)
+    if sislogin():
+        proxhome = sget('dc')
+        return template('manage.tpl', dcdc = proxhome)
+    else:
+        sset('lastpage', '/manage')
+        redirect('/login/%s' % centername)
 
 @route('/node/MV/<centername>')
 def nodeMV(centername):
@@ -99,6 +98,7 @@ def nodeMV(centername):
         proxhome = sget('dc')
         return template('managemv.tpl', dcdc = proxhome)
     else:
+        sset('lastpage', '/node/MV')
         redirect('/login/%s' % centername)
 
 ## Zona de bottle

@@ -13,7 +13,7 @@
     %       if len(dcdc.mvdict['data']) > 0:
     <table style="width:100%">
         <tr>
-            <th colspan="3">Nodo: {{node['node']}}</th>
+            <th colspan="3">{{node['node']}}</th>
         </tr>
         <tr>
             <th>VMID</th>

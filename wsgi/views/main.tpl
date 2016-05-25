@@ -9,7 +9,7 @@
 %>
     <div id="content">
     <!-- insert the page content here -->
-    % sset('lastpage', '/manage')
+    % sset('returnpage', '/manage')
     % datacenterlist = Mydb.DataCenterList(dcdb)
     % if len(datacenterlist) >= 1:
             <ul>
