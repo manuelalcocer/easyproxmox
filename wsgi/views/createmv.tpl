@@ -10,11 +10,7 @@
     <div id="content">
     <!-- insert the page content here -->
     % dcdc.FetchInfoNode(node)
-    % for item in dcdc.nodestatusdict['data']:
-        <p>{{item}}</p>
-    % end
-    <%
-    '''<table style="width:100%">
+    <table style="width:100%">
         <tr>
             <th colspan="3">{{dcdc.centername}}</th>
         </tr>
@@ -43,8 +39,7 @@
         <tr>
             <th colspan="3">UPTIME</th>
         </tr>
-    </table>'''
-    %>
+    </table>
     <!-- to here -->
     </div>
 </div>

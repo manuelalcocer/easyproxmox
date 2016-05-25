@@ -53,12 +53,12 @@ class DataCenter:
 
     def FetchInfoNode(self, node):
         self.NodeStatusPath = self.api_root + '/nodes/' + node + '/status'
-        self.nodestatusdict = {}
         self.nodestatusdict = self.Getjson(self.NodeStatusPath)
-        #self.nodestatusdict['memory']['total'] = self.Convert(self.nodestatusdict['memory']['total'],'B', 'GB')
-        #self.nodestatusdict['memory']['free'] = self.Convert(self.nodestatusdict['memory']['free'],'B', 'GB')
-        #self.nodestatusdict['memory']['used'] = self.Convert(self.nodestatusdict['memory']['used'],'B', 'GB')
-        #self.nodestatusdict['uptime'] = self.Convert(self.nodestatusdict['uptime'], 'secs', 'days')
+        self.nodestatusdict = self.nodestatusdict['data']
+        self.nodestatusdict['memory']['total'] = self.Convert(self.nodestatusdict['memory']['total'],'B', 'GB')
+        self.nodestatusdict['memory']['free'] = self.Convert(self.nodestatusdict['memory']['free'],'B', 'GB')
+        self.nodestatusdict['memory']['used'] = self.Convert(self.nodestatusdict['memory']['used'],'B', 'GB')
+        self.nodestatusdict['uptime'] = self.Convert(self.nodestatusdict['uptime'], 'secs', 'days')
 
     def Convert(size, s_unit, t_unit):
         if s_unit == 'B':
