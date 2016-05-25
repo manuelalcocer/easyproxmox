@@ -38,7 +38,7 @@ class DataCenter:
         self.MvPath = self.api_root + '/nodes/' + node + '/qemu'
         self.json_mvdict = loads(requests.get(self.MvPath, cookies = self.creds['cookie'], verify = False).text)
         self.mvdict = {}
-        for mv in json_mvdict['data']:
+        for mv in self.json_mvdict['data']:
             self.mvdict[mv['vmid']] = mv
 
 def sset(key,value):
