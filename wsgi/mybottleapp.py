@@ -95,11 +95,10 @@ def manage(centername):
 
 @route('/node/MV/<centername>')
 def nodeMV(centername):
-    try:
-        if sislogin():
-            proxhome = sget('dc')
-            return template('managemv.tpl', dcdc = proxhome)
-    except:
+    if sislogin():
+        proxhome = sget('dc')
+        return template('managemv.tpl', dcdc = proxhome)
+    else:
         redirect('/login/%s' % centername)
 
 ## Zona de bottle
