@@ -4,7 +4,7 @@
                     { 'name' : 'Configurar EP' , 'active' : False , 'url' : '/configureEP' },
                     { 'name' : 'Administrar Nodo', 'active' : False, 'url' : '/node/MV/%s' % dcdc.centername },
                     { 'name' : 'Crear MV' , 'active' : True , 'url' : '/node/createMV/%s/%s' % (node, dcdc.centername) } ])
-    include('header.tpl', title='Crear Máquina virtual')
+    include('header.tpl', title='Crear Maquina virtual')
     include('sidebar.tpl', title='sidebar')
 %>
     <div id="content">
