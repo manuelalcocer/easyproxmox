@@ -12,16 +12,16 @@
     %       dcdc.FetchNodeMvs(node['node'])
     <table style="width:100%">
         <tr>
-            <th colspan="4">{{node['node']}}</th>
+            <th colspan="4">{{node['node']}}
+                    <a href="/node/createMV/{{dcdc.centername}}">
+                        <img src="/static/proyecto/style/icon-new.png" alt="Crear Máquina" title="Crear Máquina Virtual"/></a>
+            </th>
         </tr>
         <tr>
             <th>VMID</th>
             <th>Nombre</th>
             <th>Estado</th>
             <th>Acciones</th>
-        </tr>
-        <tr>
-            <td colspan="4"><a href="/node/createMV/{{dcdc.centername}}">Crear máquina</a></td>
         </tr>
     %       for key in dcdc.mvdict.keys():
                 <tr>
