@@ -42,7 +42,7 @@
     </table>
     <!-- Formulario de creación de máquina virtual -->
     % include('createmvform.tpl', node = node, dcdc = dcdc)
-    <!-- Hasta Aquí el formulario -->
+    <!-- Hasta Aquí el formulario de creación -->
     <!-- to here -->
     </div>
 </div>

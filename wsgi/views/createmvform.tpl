@@ -5,12 +5,13 @@
 <form action='/createdatacenter' method="post">
         <fieldset>
             <legend>General</legend>
-            <b>vmid</b><br>
+            <br><b>vmid</b><br>
             <input type="text" name="vmid" value="{{newvmid}}" disabled><br>
-            <b>Nombre</b><br>
+            <br><b>Nombre</b><br>
             <input type="text" name="name" autofocus="autofocus"><br>
-            <b>Conjunto de recursos</b><br>
+            <br><b>Conjunto de recursos</b><br>
             <input type="text" name="pool" value="easyproxmox" disabled><br>
+            <br>
         </fieldset>
         <br>
         <fieldset>
@@ -23,7 +24,24 @@
                 for ossys in ossytems:
                     key = ossys.keys()[0]
             %>
+                <br>
                 <input type="radio" name="ossytem" value="{{key}}">{{ossys[key]}}</input><br>
             % end
+            <br>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Unidad de CD</legend>
+            <label for='isoimage'>Imagen ISO</label>
+            <select id="isoimage" name="isoimage">
+            <%
+                dcdc.FetchIsoList(node)
+                for iso in dcdc.isoslist:
+                    if iso['content'] == 'iso' and iso['format'] == 'iso':
+            %>
+                <option value="{{iso['volid']}}">{{iso['volid'].lstrip(':iso/')}}</option>
+            %       end
+            %   end
+            </select>
         </fieldset>
 </form>
