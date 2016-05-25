@@ -10,7 +10,7 @@
     <!-- insert the page content here -->
     <h3>{{dcdc.centername}} Info:</h3>
 
-    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    <canvas id="chartContainer" style="height: 300px; width: 100%;"></canvas>
     <!-- to here -->
     </div>
 </div>
