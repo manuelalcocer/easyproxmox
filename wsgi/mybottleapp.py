@@ -100,7 +100,7 @@ def nodeMV(centername):
         sset('lastpage', '/node/MV')
         redirect('/login/%s' % centername)
 
-@route('/node/createMV/<centername')
+@route('/node/createMV/<centername>')
 def createMV(centername):
     if sislogin():
         proxhome = sget('dc')
