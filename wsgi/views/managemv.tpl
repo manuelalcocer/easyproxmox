@@ -28,7 +28,13 @@
                     <td>{{dcdc.mvdict[key]['vmid']}}</td>
                     <td>{{dcdc.mvdict[key]['name']}}</td>
                     <td>{{dcdc.mvdict[key]['status']}}</td>
-                    <td align="center"><img src="/static/proyecto/style/icon-remove.png"/>&nbsp&nbsp<img src="/static/proyecto/style/icon-conv2tpl.png"/></td>
+                    <td align="center">
+                            <a href="/node/deleteMV/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
+                                <img src="/static/proyecto/style/icon-remove.png"/></a>
+                        &nbsp&nbsp
+                            <a href="/node/convert2tpl/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
+                                <img src="/static/proyecto/style/icon-conv2tpl.png"/></a>
+                    </td>
                 </tr>
     %       end
     </table>
