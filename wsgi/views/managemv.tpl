@@ -11,7 +11,8 @@
         <li><a href="/node/createMV/{{dcdc.centername}}">Crear máquina</a></li>
     </ul>
     % dcdc.FetchNodeList()
-    % for key in dcdc.nodedict.keys():
+    % dcdc.FetchNodeMvs(dcdc.nodedict['data']['node'])
+    % for key in dcdc.mvdict.keys():
         <p>{{key}} : {{dcdc.nodedict[key]}}</p>
     % end
     <!-- to here -->
