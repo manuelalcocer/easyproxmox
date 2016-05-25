@@ -42,6 +42,7 @@ class DataCenter:
         for mv in self.json_mvdict['data']:
             if mv['template'] != 1:
                 self.mvdict[mv['vmid']] = mv
+                self.mvdict[mv['vmid']]['estado'] = mv['status']
             else:
                 self.tpldict[mv['vmid']] = mv
 
