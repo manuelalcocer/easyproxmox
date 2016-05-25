@@ -113,7 +113,7 @@ def createMV(centername, node):
 def downloadiso(node):
     if sislogin():
         proxhome = sget('dc')
-        return tenplate('downloadiso.tpl', dcdc = proxhome, node = node)
+        return template('downloadiso.tpl', dcdc = proxhome, node = node)
     else:
         sset('lastpage', '/downloadiso/%s' % node)
         redirect('/login/%s' % sget('dc').centername)
