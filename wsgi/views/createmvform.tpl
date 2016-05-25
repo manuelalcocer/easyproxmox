@@ -39,7 +39,7 @@
                 for iso in dcdc.isoslist:
                     if iso['content'] == 'iso' and iso['format'] == 'iso':
             %>
-                <option value="{{iso['volid']}}">{{iso['volid'].lstrip(':iso/')}}</option>
+                <option value="{{iso['volid']}}">{{iso['volid'].lstrip('isos_rapidas:iso/')}}</option>
             %       end
             %   end
             </select>
