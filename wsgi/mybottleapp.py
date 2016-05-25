@@ -1,5 +1,6 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
+
 from bottle import route, default_app, template, static_file, request, redirect
 
 from beaker.middleware import SessionMiddleware
@@ -9,9 +10,7 @@ import os
 from eproxlib.datacenter import DataCenter as MyDataCenter
 from eproxlib.datacenter import DataBase as MyDataBase
 from eproxlib.datacenter import sset, sget, sdelete, sislogin
-
 import eproxlib.proxdatabase as Mydb
-
 
 session_opts = {
     'session.type': 'file',

@@ -12,21 +12,23 @@
     %       dcdc.FetchNodeMvs(node['node'])
     <table style="width:100%">
         <tr>
-            <th colspan="3">{{node['node']}}</th>
+            <th colspan="4">{{node['node']}}</th>
         </tr>
         <tr>
             <th>VMID</th>
             <th>Nombre</th>
             <th>Estado</th>
+            <th>Acciones</th>
         </tr>
         <tr>
-            <td colspan="3"><a href="/node/createMV/{{dcdc.centername}}">Crear máquina</a></td>
+            <td colspan="4"><a href="/node/createMV/{{dcdc.centername}}">Crear máquina</a></td>
         </tr>
     %       for key in dcdc.mvdict.keys():
                 <tr>
                     <td>{{dcdc.mvdict[key]['vmid']}}</td>
                     <td>{{dcdc.mvdict[key]['name']}}</td>
                     <td>{{dcdc.mvdict[key]['status']}}</td>
+                    <td><img src="/static/proyecto/style/icon-remove.png"/></td>
                 </tr>
     %       end
     </table>
@@ -35,8 +37,3 @@
     </div>
 </div>
 % include('footer.tpl')
-
-
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
