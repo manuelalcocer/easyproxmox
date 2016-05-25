@@ -1,7 +1,7 @@
 <%
     menulist = ([   { 'name' : 'Home' , 'active' : False , 'url' : '/' },
                     { 'name' : 'Configurar EP' , 'active' : False , 'url' : '/configureEP' },
-                    { 'name' : 'Administrar Nodo', 'active' : True, 'url' : '/manage/%s' % centername}])
+                    { 'name' : 'Administrar Nodo', 'active' : True, 'url' : '/manage/%s' % dcdc.centername}])
     include('header.tpl', title='Administrar Nodo')
     include('sidebar.tpl', title='sidebar')
 %>
