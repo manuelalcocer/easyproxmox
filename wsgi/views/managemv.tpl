@@ -1,4 +1,5 @@
 <%
+    # -*- coding: utf-8 -*-
     menulist = ([   { 'name' : 'Home' , 'active' : False , 'url' : '/' },
                     { 'name' : 'Configurar EP' , 'active' : False , 'url' : '/configureEP' },
                     { 'name' : 'Administrar Nodo', 'active' : True, 'url' : '/node/MV/%s' % dcdc.centername } ])
