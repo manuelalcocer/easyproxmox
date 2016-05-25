@@ -20,13 +20,13 @@
             <th>Nombre</th>
             <th>Estado</th>
         </tr>
-        <tr>
     %       for mv in dcdc.mvdict['data']:
-                <td>{{mv['vmid']}}</td>
-                <td>{{mv['name']}}</td>
-                <td>{{mv['status']}}</td>
+                <tr>
+                    <td>{{mv['vmid']}}</td>
+                    <td>{{mv['name']}}</td>
+                    <td>{{mv['status']}}</td>
+                </tr>
     %       end
-        </tr>
     </table>
     %   end
     <!-- to here -->
