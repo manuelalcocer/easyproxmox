@@ -13,6 +13,7 @@
     % for item in dcdc.nodestatusdict.keys():
         <p>{{item}}</p>
     % end
+    <%
     '''<table style="width:100%">
         <tr>
             <th colspan="3">{{dcdc.centername}}</th>
