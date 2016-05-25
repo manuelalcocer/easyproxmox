@@ -52,7 +52,7 @@ class DataCenter:
                 self.tpldict[mv['vmid']] = mv
 
     def FetchInfoNode(self, node):
-        self.NodeStatusPath = self.api_root + 'nodes' + node + 'status'
+        self.NodeStatusPath = self.api_root + '/nodes/' + node + '/status'
         self.nodestatusdict = self.Getjson(self.NodeStatusPath)
         self.nodestatusdict['memory']['total'] = self.Convert(self.nodestatusdict['memory']['total'],'B', 'GB')
         self.nodestatusdict['memory']['free'] = self.Convert(self.nodestatusdict['memory']['free'],'B', 'GB')
