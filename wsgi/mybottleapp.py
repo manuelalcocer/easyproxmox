@@ -119,7 +119,7 @@ def downloadiso(node):
         redirect('/login/%s' % sget('dc').centername)
 
 @route('/downloadnow/<node>', method='POST')
-def createdatacenter():
+def downloadnow(node):
     if sislogin():
         proxhome = sget('dc')
         url = request.forms.get('url')
