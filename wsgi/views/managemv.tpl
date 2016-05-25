@@ -29,11 +29,21 @@
                     <td>{{dcdc.mvdict[key]['name']}}</td>
                     <td>{{dcdc.mvdict[key]['status']}}</td>
                     <td align="center">
-                            <a href="/node/deleteMV/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
-                                <img src="/static/proyecto/style/icon-remove.png"/></a>
                         &nbsp&nbsp
+                        % if {{dcdc.mvdict[key]['status']}} == 'stopped':
+                            <a href="/node/power/on/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
+                                <img src="/static/proyecto/style/icon-poweron.png" alt="Encender"/></a>
+                            <a href="/node/reset/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
+                                <img src="/static/proyecto/style/icon-reset.png" alt="Resetear"/></a>
                             <a href="/node/convert2tpl/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
-                                <img src="/static/proyecto/style/icon-conv2tpl.png"/></a>
+                                <img src="/static/proyecto/style/icon-conv2tpl.png" alt="Convertir a plantilla"/></a>
+                        % else:
+                            <a href="/node/power/off/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
+                                <img src="/static/proyecto/style/icon-poweroff.png" alt="Apagado brusco"/></a>
+                        % end
+                        &nbsp&nbsp
+                        <a href="/node/deleteMV/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
+                                <img src="/static/proyecto/style/icon-remove.png" alt="Eliminar Máquina"/></a>
                     </td>
                 </tr>
     %       end
