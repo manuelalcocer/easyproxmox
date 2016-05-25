@@ -15,12 +15,25 @@
         </tr>
         <tr>
             <th rowspan="2">CPU</th>
-            <th>Cant.</th>
-            <td>4</td>
+            <th>Hilos/Núcleos</th>
+            <td>{{dcdc.nodestatusdict['cpuinfo']['cpus']}}</td>
         </tr>
         <tr>
             <th>Modelo</th>
-            <td>AMD FX8</td>
+            <td>{{dcdc.nodestatusdict['cpuinfo']['model']}}</td>
+        </tr>
+        <tr>
+            <th rowspan="3">Memoria</th>
+            <th>Total</th>
+            <td>{{dcdc.nodestatusdict['memory']['total']}}</td>
+        </tr>
+        <tr>
+            <th>Usada</th>
+            <td>{{dcdc.nodestatusdict['memory']['used']}}</td>
+        </tr>
+        <tr>
+            <th>Libre</th>
+            <td>{{dcdc.nodestatusdict['memory']['free']}}</td>
         </tr>
         <tr>
             <th colspan="3">UPTIME</th>
