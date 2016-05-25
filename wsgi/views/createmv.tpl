@@ -8,7 +8,23 @@
 %>
     <div id="content">
     <!-- insert the page content here -->
-    <h3>{{dcdc.centername}} Info:</h3>
+    <table style="width:100%">
+        <tr>
+            <th colspan="3">{{dcdc.centername}}</th>
+        </tr>
+        <tr>
+            <th rowspan="2">CPU</th>
+            <th>Cant.</th>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>Modelo</th>
+            <td>AMD FX8</td>
+        </tr>
+        <tr>
+            <th colspan="3">UPTIME</th>
+        </tr>
+    </table>
 
     <!-- to here -->
     </div>
