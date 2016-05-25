@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from bottle import request
 from json import loads, dumps
 import os
