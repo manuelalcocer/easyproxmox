@@ -10,13 +10,16 @@
     <ul>
         <li><a href="/node/createMV/{{dcdc.centername}}">Crear máquina</a></li>
     </ul>
-    % dcdc.FetchNodeList()
-    % for node in dcdc.nodedict['data']:
-    %   dcdc.FetchNodeMvs(node['node'])
-    %   for key in dcdc.mvdict.keys():
-                <p>{{key}} : {{dcdc.mvdict[key]}}</p>
+    <%  dcdc.FetchNodeList()
+        <ul>
+        for node in dcdc.nodedict['data']:
+            dcdc.FetchNodeMvs(node['node'])
+            for mv in dcdc.mvdict['data']:
+    %>
+                <li>{{mv['vmid']}} : {{mv['name']}} - Status: {{mv['status']}}</li>
     %   end
     % end
+    </ul>
     <!-- to here -->
     </div>
 </div>
