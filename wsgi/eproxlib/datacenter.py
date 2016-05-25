@@ -53,7 +53,8 @@ class DataCenter:
 
     def FetchInfoNode(self, node):
         self.NodeStatusPath = self.api_root + '/nodes/' + node + '/status'
-        self.nodestatusdict = self.Getjson(self.NodeStatusPath)
+        self.nodestatusdict = {}
+        self.nodestatusdict = Getjson(self.NodeStatusPath)
         self.nodestatusdict['memory']['total'] = Convert(self.nodestatusdict['memory']['total'],'B', 'GB')
         self.nodestatusdict['memory']['free'] = Convert(self.nodestatusdict['memory']['free'],'B', 'GB')
         self.nodestatusdict['memory']['used'] = Convert(self.nodestatusdict['memory']['used'],'B', 'GB')
