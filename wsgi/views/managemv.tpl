@@ -30,7 +30,8 @@
                     <td>{{dcdc.mvdict[key]['status']}}</td>
                     <td align="center">
                         &nbsp&nbsp
-                        % if {{dcdc.mvdict[key]['status']}} == 'stopped':
+                        % estado = {{dcdc.mvdict[key]['status']}}
+                        % if estado == 'stopped':
                             <a href="/node/power/on/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
                                 <img src="/static/proyecto/style/icon-poweron.png" alt="Encender"/></a>
                             <a href="/node/reset/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
