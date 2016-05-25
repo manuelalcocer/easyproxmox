@@ -27,7 +27,12 @@
                 <tr>
                     <td>{{dcdc.mvdict[key]['vmid']}}</td>
                     <td>{{dcdc.mvdict[key]['name']}}</td>
-                    <td>{{dcdc.mvdict[key]['status']}}</td>
+    %           if {{dcdc.mvdict[key]['status']}} == 'running':
+                    <td style="color:green">
+    %           else:
+                    <td style="color:red">
+    %           end
+                    {{dcdc.mvdict[key]['status']}}</td>
                 </tr>
     %       end
     </table>
