@@ -2,7 +2,7 @@
 % while newvmid in dcdc.mvdict.keys() and newvmid in dcdc.tpldict.keys():
 %   newvmid = newvmid + 1
 % end
-<form action='/createdatacenter' method="post">
+<form action='/createnow/<centername>/<node>' method="post">
         <fieldset>
             <legend>General</legend>
             <br><b>vmid</b><br>
@@ -44,8 +44,9 @@
             %       end
             %   end
             </select>
-            <form action="/downloadiso/{{node}}">
-                <input type="submit" value="Download ISO">
-            </form>
+
         </fieldset>
 </form>
+        <form action="/downloadiso/{{node}}">
+                <input type="submit" value="Download ISO">
+        </form>
