@@ -37,7 +37,7 @@ class DataCenter:
         self.nodedict = loads(requests.get(self.NodePath, cookies = self.creds['cookie'], verify = False).text)
 
     def Getjson(self, path):
-        json_dict = loads(requests.get(self.MvPath, cookies = self.creds['cookie'], verify = False).text)
+        json_dict = loads(requests.get(path, cookies = self.creds['cookie'], verify = False).text)
         return json_dict
 
     def FetchNodeMvs(self, node):
