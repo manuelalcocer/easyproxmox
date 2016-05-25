@@ -25,9 +25,9 @@
         </tr>
     %       for key in dcdc.mvdict.keys():
                 <tr>
-                    <td>{{mv[key]['vmid']}}</td>
-                    <td>{{mv[key]['name']}}</td>
-                    <td>{{mv[key]['status']}}</td>
+                    <td>{{dcdc.mvdict[key]['vmid']}}</td>
+                    <td>{{dcdc.mvdict[key]['name']}}</td>
+                    <td>{{dcdc.mvdict[key]['status']}}</td>
                 </tr>
     %       end
     </table>
