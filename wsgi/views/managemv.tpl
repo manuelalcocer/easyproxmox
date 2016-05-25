@@ -11,15 +11,30 @@
         <li><a href="/node/createMV/{{dcdc.centername}}">Crear máquina</a></li>
     </ul>
     %  dcdc.FetchNodeList()
-    <ul>
     %   for node in dcdc.nodedict['data']:
     %       dcdc.FetchNodeMvs(node['node'])
+    %       if len(dcdc.mvdict['data']) > 0:
+    <table style="width:100%">
+        <tr>
+            <th>VMID</th>
+            <th>Nombre</th>
+            <th>Estado</th>
+        </tr>
+        <tr>
     %       for mv in dcdc.mvdict['data']:
-                <li>{{mv['vmid']}} : {{mv['name']}} - Status: {{mv['status']}}</li>
+                <td>{{mv['vmid']}}</td>
+                <td>{{mv['name']}}</td>
+                <td>{{mv['status']}}</td>
+    %       end
+        </tr>
+    </table>
     %   end
-    % end
-    </ul>
     <!-- to here -->
     </div>
 </div>
 % include('footer.tpl')
+
+
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
