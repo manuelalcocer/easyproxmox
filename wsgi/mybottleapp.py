@@ -34,7 +34,7 @@ def index():
 def login(centername):
     if sislogin():
         lastpage = sget('lastpage')
-        if lastpage = '/manage':
+        if lastpage == '/manage':
             redirect('/manage/%s' % centername)
     else:
         return template('login.tpl', centername = centername)
