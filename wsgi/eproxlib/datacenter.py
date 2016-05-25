@@ -6,6 +6,9 @@ import os
 import psycopg2
 import requests
 
+import httplib
+from urlparse import urlparse
+
 class DataBase:
     def __init__(self, dbname):
         self.dbname = dbname
@@ -40,6 +43,9 @@ class DataCenter:
         json_dict = loads(requests.get(path, cookies = self.creds['cookie'], verify = False).text)
         return json_dict
 
+    def MakePost(self, path, datadict):
+        requests.post(path, cookies = self.creds['cookie'], headers = self.creds['header'], data = datadict, verify = False)
+
     def FetchNodeMvs(self, node):
         self.MvPath = self.api_root + '/nodes/' + node + '/qemu'
         self.json_mvdict = loads(requests.get(self.MvPath, cookies = self.creds['cookie'], verify = False).text)
@@ -73,6 +79,19 @@ class DataCenter:
             if t_unit == 'days':
                 ret = str(round(float(size) / (24*3600),1)) + ' días'
                 return ret
+
+## zona de descarga de isos
+    def CheckURL(self, url):
+        p = urlparse(url)
+        conn = httplib.HTTPConnection(p.netloc)
+        conn.request('HEAD', p.path)
+        resp = conn.getresponse()
+        # True if full path exist, otherwise False
+        return resp.status < 400
+
+    def Downloadiso(self, url):
+        self.NodeStatusPath = self.api_root + '/nodes/' + node + '/execute'
+        datadict = { 'commands' : '/usr/local/bin/bajar %s' % url }
 
 def sset(key,value):
     s = request.environ.get('beaker.session')

@@ -109,6 +109,28 @@ def createMV(centername, node):
         sset('lastpage', '/node/createMV')
         redirect('/login/%s' % centername)
 
+@route('/downloadiso/<node>')
+def downloadiso(node):
+    if sislogin():
+        proxhome = sget('dc')
+        return tenplate('downloadiso.tpl', dcdc = proxhome, node = node)
+    else:
+        sset('lastpage', '/downloadiso/%s' % node)
+        redirect('/login/%s' % sget('dc').centername)
+
+@route('/downloadnow/<node>', method='POST')
+def createdatacenter():
+    if sislogin():
+        proxhome = sget('dc')
+        url = request.forms.get('url')
+        if proxhome.CheckURL(url):
+            proxhome.DownloadISO(url)
+            redirect('/node/createMV/%s/%s' %(node, proxhome.centername))
+    else:
+        sset('lastpage', '/downloadiso/%s' % node)
+        redirect('/login/%s' % sget('dc').centername)
+
+
 ## Zona de bottle
 @route('/static/<filepath:path>')
 def server_static(filepath):

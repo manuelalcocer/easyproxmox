@@ -34,14 +34,18 @@
             <legend>Unidad de CD</legend>
             <label for='isoimage'>Imagen ISO</label>
             <select id="isoimage" name="isoimage">
+                <option value="none">CD-Rom Vacío</option>
             <%
                 dcdc.FetchIsoList(node, 'isos_rapidas')
                 for iso in dcdc.isoslist:
                     if iso['content'] == 'iso' and iso['format'] == 'iso':
             %>
-                <option value="{{iso['volid']}}">{{iso['volid'][len('isos_rapidas'):]}}</option>
+                <option value="{{iso['volid']}}">{{iso['volid'][len('isos_rapidas:iso'):]}}</option>
             %       end
             %   end
             </select>
+            <form action="/downloadiso/{{node}}">
+                <input type="submit" value="Download ISO">
+            </form>
         </fieldset>
 </form>
