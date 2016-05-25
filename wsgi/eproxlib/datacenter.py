@@ -32,7 +32,11 @@ class DataCenter:
 
     def FetchNodeList(self):
         self.NodePath = self.api_root + '/nodes'
-        self.json_nodelist = loads(requests.get(self.NodePath, cookies = self.creds['cookie'], verify = False).text)
+        self.nodedict = loads(requests.get(self.NodePath, cookies = self.creds['cookie'], verify = False).text)
+
+    def FecthNodeMvs(self, node):
+        self.MvPath = self.api_root + '/nodes/' + node + '/qemu'
+        self.mvdict = loads(requests.get(self.MvPath, cookies = self.creds['cookie'], verify = False).text)
 
 def sset(key,value):
     s = request.environ.get('beaker.session')
