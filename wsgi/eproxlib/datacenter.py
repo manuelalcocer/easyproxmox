@@ -63,7 +63,7 @@ class DataCenter:
     def Convert(self, size, s_unit, t_unit):
         if s_unit == 'B':
             if t_unit == 'GB':
-                ret = str(round(float(size) / 1024**2, 2)) + ' ' + t_unit
+                ret = str(round(float(size) / 1024**3, 2)) + ' ' + t_unit
                 return ret
         elif s_unit == 'secs':
             if t_unit == 'days':

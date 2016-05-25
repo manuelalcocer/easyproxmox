@@ -36,8 +36,11 @@
             <th>Libre</th>
             <td>{{dcdc.nodestatusdict['memory']['free']}}</td>
         </tr>
+        th {
+                text-align: center;
+            }
         <tr>
-            <th colspan="3">UPTIME</th>
+            <th colspan="3">UPTIME: {{dcdc.nodestatusdict['uptime']}}</th>
         </tr>
     </table>
     <!-- to here -->
