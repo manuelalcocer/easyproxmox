@@ -34,7 +34,7 @@ class DataCenter:
         self.NodePath = self.api_root + '/nodes'
         self.nodedict = loads(requests.get(self.NodePath, cookies = self.creds['cookie'], verify = False).text)
 
-    def FecthNodeMvs(self, node):
+    def FetchNodeMvs(self, node):
         self.MvPath = self.api_root + '/nodes/' + node + '/qemu'
         self.mvdict = loads(requests.get(self.MvPath, cookies = self.creds['cookie'], verify = False).text)
 
