@@ -8,7 +8,7 @@
     <div id="content">
     <!-- insert the page content here -->
     <ul>
-        <li><a href="/node/createMV/{{centername}}">Crear máquina</a></li>
+        <li><a href="/node/createMV/{{dcdc.centername}}">Crear máquina</a></li>
     </ul>
     <!-- to here -->
     </div>
