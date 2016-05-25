@@ -10,7 +10,7 @@
     <div id="content">
     <!-- insert the page content here -->
     % dcdc.FetchInfoNode(node)
-    % for item in dcdc.nodestatusdict.keys():
+    % for item in dcdc.nodestatusdict['data']:
         <p>{{item}}</p>
     % end
     <%
