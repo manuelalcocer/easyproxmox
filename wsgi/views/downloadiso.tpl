@@ -9,9 +9,10 @@
 %>
     <div id="content">
     <!-- insert the page content here -->
-    <form action='/downloadnow' method="post">
+    <form action='/downloadnow/{{node}}' method="post">
     <b>URL de la ISO:</b><br>
             <input type="text" name="URL" autofocus="autofocus"><br>
+            <input type="submit" value="Descargar Ahora">
     </form>
     <!-- to here -->
     </div>

@@ -48,5 +48,5 @@
         </fieldset>
 </form>
         <form action="/downloadiso/{{node}}">
-                <input type="submit" value="Download ISO">
+            <input type="submit" value="Download ISO">
         </form>
