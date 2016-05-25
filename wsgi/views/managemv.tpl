@@ -28,7 +28,7 @@
                     <td>{{dcdc.mvdict[key]['vmid']}}</td>
                     <td>{{dcdc.mvdict[key]['name']}}</td>
                     <td>{{dcdc.mvdict[key]['status']}}</td>
-                    <td><img src="/static/proyecto/style/icon-remove.png"/></td>
+                    <td align="center"><img src="/static/proyecto/style/icon-remove.png"/>&nbsp&nbsp<img src="/static/proyecto/style/icon-conv2tpl.png"/></td>
                 </tr>
     %       end
     </table>
