@@ -51,7 +51,10 @@ def sdelete():
 
 def sislogin():
     s = request.environ.get('beaker.session')
-    return s['dc'].creds['cookie']['PVEAuthCookie']
+    try:
+        return s['dc'].creds['cookie']['PVEAuthCookie']
+    except:
+        return None
 
 if __name__ == '__main__':
     Main()
