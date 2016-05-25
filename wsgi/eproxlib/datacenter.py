@@ -34,6 +34,10 @@ class DataCenter:
         self.NodePath = self.api_root + '/nodes'
         self.nodedict = loads(requests.get(self.NodePath, cookies = self.creds['cookie'], verify = False).text)
 
+    def Getjson(self, path):
+        json_dict = loads(requests.get(self.MvPath, cookies = self.creds['cookie'], verify = False).text)
+        return json_dict
+
     def FetchNodeMvs(self, node):
         self.MvPath = self.api_root + '/nodes/' + node + '/qemu'
         self.json_mvdict = loads(requests.get(self.MvPath, cookies = self.creds['cookie'], verify = False).text)
@@ -44,6 +48,10 @@ class DataCenter:
                 self.mvdict[mv['vmid']] = mv
             else:
                 self.tpldict[mv['vmid']] = mv
+
+    def FetchInfoNode(self, node):
+        self.NodeStatusPath = self.api_root + 'nodes' + node + 'status'
+        self.nodestatusdict = self.Getjson(self.NodeStatusPath)
 
 def sset(key,value):
     s = request.environ.get('beaker.session')

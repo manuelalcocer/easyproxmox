@@ -100,6 +100,15 @@ def nodeMV(centername):
         sset('lastpage', '/node/MV')
         redirect('/login/%s' % centername)
 
+@route('/node/createMV/<centername')
+def createMV(centername):
+    if sislogin():
+        proxhome = sget('dc')
+        return template('createmv.tpl', dcdc = proxhome)
+    else:
+        sset('lastpage', '/node/createMV')
+        redirect('/login/%s' % centername)
+
 ## Zona de bottle
 @route('/static/<filepath:path>')
 def server_static(filepath):

@@ -12,9 +12,9 @@
     %       dcdc.FetchNodeMvs(node['node'])
     <table style="width:100%">
         <tr>
-            <th colspan="4">{{node['node']}}
-                    <a href="/node/createMV/{{dcdc.centername}}">
-                        <img src="/static/proyecto/style/icon-new.png" alt="Crear Máquina" title="Crear Máquina Virtual"/></a>
+            <th colspan="4"><a href="/node/createMV/{{dcdc.centername}}">
+                                <img src="/static/proyecto/style/icon-new.png" alt="Crear Máquina" title="Crear Máquina Virtual"/></a>
+                            &nbsp{{node['node']}}
             </th>
         </tr>
         <tr>
@@ -29,7 +29,7 @@
                     <td>{{dcdc.mvdict[key]['name']}}</td>
                     <td>{{dcdc.mvdict[key]['status']}}</td>
                     <td align="center">
-                        &nbsp&nbsp
+                        &nbsp
                         % if dcdc.mvdict[key]['status'] == 'stopped':
                             <a href="/node/power/on/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
                                 <img src="/static/proyecto/style/icon-poweron.png" alt="Encender" title="Encender"/></a>
@@ -41,7 +41,7 @@
                             <a href="/node/power/off/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
                                 <img src="/static/proyecto/style/icon-poweroff.png" alt="Apagado brusco" title="Apagado brusco"/></a>
                         % end
-                        &nbsp&nbsp
+                        &nbsp
                         <a href="/node/deleteMV/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
                                 <img src="/static/proyecto/style/icon-remove.png" alt="Eliminar Máquina" title="Eliminar Máquina"/></a>
                     </td>
