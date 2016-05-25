@@ -28,6 +28,7 @@
                     <td>{{dcdc.mvdict[key]['name']}}</td>
                     <td>{{dcdc.mvdict[key]['status']}}</td>
                 </tr>
+    %       end
     </table>
     %   end
     <!-- to here -->
