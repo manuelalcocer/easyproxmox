@@ -36,10 +36,10 @@ def login(centername):
 
 @route('/FetchCreds/<centername>', method='POST')
 def FetchCreds(centername):
-    proxdb.InfoCenter(centername=centername)
-    proxhome = MyDataCenter(proxdb.infocenter[0])
-    proxhome.https_url = proxdb.infocenter[1]
-    proxhome.port = proxdb.infocenter[2]
+    datacenter = Mydb.InfoCenter(sget('db'), centername=centername)
+    proxhome = MyDataCenter(datacenter[0])
+    proxhome.https_url = datacenter[1]
+    proxhome.port = datacenter[2]
     username = request.forms.get('username')
     password = request.forms.get('password')
 

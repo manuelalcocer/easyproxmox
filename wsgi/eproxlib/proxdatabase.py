@@ -35,4 +35,5 @@ def InfoCenter(dcdb, **kwargs):
     conn, cur = CreateConn(dcdb)
     cur.execute("""select * from centros_de_datos where nombre = %(centername)s;""", kwargs)
     infocenter = cur.fetchone()
+    CloseConn(conn, cur)
     return infocenter
