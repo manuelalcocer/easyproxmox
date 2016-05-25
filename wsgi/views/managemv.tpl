@@ -10,7 +10,7 @@
     %  dcdc.FetchNodeList()
     %   for node in dcdc.nodedict['data']:
     %       dcdc.FetchNodeMvs(node['node'])
-    %       if len(dcdc.mvdict['data']) > 0:
+    %       if len(dcdc.mvdict) > 0:
     <table style="width:100%">
         <tr>
             <th colspan="3">{{node['node']}}</th>
@@ -23,11 +23,11 @@
         <tr>
             <td colspan="3"><a href="/node/createMV/{{dcdc.centername}}">Crear máquina</a></td>
         </tr>
-    %       for mv in dcdc.mvdict['data']:
+    %       for key in dcdc.mvdict.keys():
                 <tr>
-                    <td>{{mv['vmid']}}</td>
-                    <td>{{mv['name']}}</td>
-                    <td>{{mv['status']}}</td>
+                    <td>{{mv[key]['vmid']}}</td>
+                    <td>{{mv[key]['name']}}</td>
+                    <td>{{mv[key]['status']}}</td>
                 </tr>
     %       end
     </table>
