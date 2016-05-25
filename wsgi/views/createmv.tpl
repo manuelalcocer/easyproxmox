@@ -12,7 +12,7 @@
     % dcdc.FetchInfoNode(node)
     <table style="width:100%">
         <tr>
-            <th colspan="3">{{dcdc.centername}}</th>
+            <th colspan="3">Nodo: {{node}}</th>
         </tr>
         <tr>
             <th rowspan="2">CPU</th>
@@ -36,13 +36,13 @@
             <th>Libre</th>
             <td>{{dcdc.nodestatusdict['memory']['free']}}</td>
         </tr>
-        th {
-                text-align: center;
-            }
         <tr>
             <th colspan="3">UPTIME: {{dcdc.nodestatusdict['uptime']}}</th>
         </tr>
     </table>
+    <!-- Formulario de creación de máquina virtual -->
+    % include('createmvform.tpl', node = node, dcdc = dcdc)
+    <!-- Hasta Aquí el formulario -->
     <!-- to here -->
     </div>
 </div>
