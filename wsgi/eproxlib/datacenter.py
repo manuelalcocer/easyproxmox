@@ -55,9 +55,9 @@ class DataCenter:
         self.NodeStatusPath = self.api_root + '/nodes/' + node + '/status'
         self.nodestatusdict = {}
         self.nodestatusdict = self.Getjson(self.NodeStatusPath)
-        self.nodestatusdict['memory']['total'] = Convert(self.nodestatusdict['memory']['total'],'B', 'GB')
-        self.nodestatusdict['memory']['free'] = Convert(self.nodestatusdict['memory']['free'],'B', 'GB')
-        self.nodestatusdict['memory']['used'] = Convert(self.nodestatusdict['memory']['used'],'B', 'GB')
+        self.nodestatusdict['memory']['total'] = self.Convert(self.nodestatusdict['memory']['total'],'B', 'GB')
+        self.nodestatusdict['memory']['free'] = self.Convert(self.nodestatusdict['memory']['free'],'B', 'GB')
+        self.nodestatusdict['memory']['used'] = self.Convert(self.nodestatusdict['memory']['used'],'B', 'GB')
         self.nodestatusdict['uptime'] = self.Convert(self.nodestatusdict['uptime'], 'secs', 'days')
 
     def Convert(size, s_unit, t_unit):
