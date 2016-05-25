@@ -35,11 +35,11 @@
             <label for='isoimage'>Imagen ISO</label>
             <select id="isoimage" name="isoimage">
             <%
-                dcdc.FetchIsoList(node)
+                dcdc.FetchIsoList(node, 'isos_rapidas')
                 for iso in dcdc.isoslist:
                     if iso['content'] == 'iso' and iso['format'] == 'iso':
             %>
-                <option value="{{iso['volid']}}">{{iso['volid'].lstrip('isos_rapidas:iso/')}}</option>
+                <option value="{{iso['volid']}}">{{iso['volid'][len('isos_rapidas'):]}}</option>
             %       end
             %   end
             </select>

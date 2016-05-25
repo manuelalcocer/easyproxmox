@@ -60,8 +60,7 @@ class DataCenter:
         self.nodestatusdict['memory']['used'] = self.Convert(self.nodestatusdict['memory']['used'],'B', 'GB')
         self.nodestatusdict['uptime'] = self.Convert(self.nodestatusdict['uptime'], 'secs', 'days')
 
-    def FetchIsoList(self, node):
-        volume = 'isos_rapidas'
+    def FetchIsoList(self, node, volume):
         self.IsoListPath = self.api_root + '/nodes/' + node + '/storage/' + volume + '/content'
         self.isoslist = self.Getjson(self.IsoListPath)['data']
 
