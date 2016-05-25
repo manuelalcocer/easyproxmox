@@ -32,7 +32,12 @@ def index():
 
 @route('/login/<centername>')
 def login(centername):
-    return template('login.tpl', centername = centername)
+    if sislogin():
+        lastpage = sget('lastpage')
+        if lastpage = '/manage':
+            redirect('/manage/%s' % centername)
+    else:
+        return template('login.tpl', centername = centername)
 
 @route('/FetchCreds/<centername>', method='POST')
 def FetchCreds(centername):
@@ -93,9 +98,7 @@ def nodeMV(centername):
     try:
         if sislogin():
             proxhome = sget('dc')
-            ticket = proxhome.creds['cookie']['PVEAuthCookie']
-            return ticket
-            #return template('managemv.tpl', centername = centername)
+            return template('managemv.tpl', dcdc = proxhome)
     except:
         redirect('/login/%s' % centername)
 
