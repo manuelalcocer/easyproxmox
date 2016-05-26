@@ -33,6 +33,7 @@
         <fieldset>
             <legend>Unidad de CD</legend>
             <label for='isoimage'>Imagen ISO</label>
+            <br>
             <br>&nbsp;
             <select id="isoimage" name="isoimage">
                 <option value="none">CD-Rom Vacío</option>
@@ -45,6 +46,7 @@
             %       end
             %   end
             </select>
+            <br>
             <br>
         </fieldset>
 </form>
