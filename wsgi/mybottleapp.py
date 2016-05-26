@@ -124,7 +124,7 @@ def createnow():
     proxhome.mvdatadict['ostype'] = request.forms.get('ostype')
 
     # CDROM
-    proxhome.mvdatadict['ide1'] = '%s, media=cdrom' % request.forms.get('volume')
+    proxhome.mvdatadict['cdrom'] = request.forms.get('volume')
 
     # HDD
     proxhome.hdddatadict['storage'] = 'easyproxmox'
@@ -143,10 +143,7 @@ def createnow():
     proxhome.mvdatadict['memory'] = int(request.forms.get('memsize'))
 
     #NETWORK
-    proxhome.mvdatadict['net1'] = 'virtio=,bridge=vmbr1'
-
-    #EXTRAS
-    proxhome.mvdatadict['boot'] = 'd1'
+    proxhome.mvdatadict['net1'] = 'virtio,bridge=vmbr1'
 
     r = proxhome.CreateMV(node)
     #proxhome.CreateHDD(node)
