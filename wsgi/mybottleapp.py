@@ -133,8 +133,8 @@ def createnow():
         proxhome.hdddatadict['vmid'] = proxhome.mvdatadict['vmid']
         proxhome.hdddatadict['node'] = node
         hddtype = request.forms.get('hddtype')
-        if hddtype = 'SATA':
-            proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk'
+        #if hddtype = 'SATA':
+        #    proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk'
 
         # CPU
         proxhome.mvdatadict['cores'] = int(request.forms.get('cores'))
@@ -150,7 +150,9 @@ def createnow():
         proxhome.mvdatadict['boot'] = 'd1'
 
         proxhome.CreateMV(node)
-        proxhome.CreateHDD(node)
+        #proxhome.CreateHDD(node)
+
+        redirect('/')
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
