@@ -5,12 +5,12 @@
 <form action='/createnow/<centername>/<node>' method="post">
         <fieldset>
             <legend>General</legend>
-            <br><b>vmid</b><br>
-            <input type="text" name="vmid" value="{{newvmid}}" disabled><br>
-            <br><b>Nombre</b><br>
-            <input type="text" name="name" autofocus="autofocus"><br>
-            <br><b>Conjunto de recursos</b><br>
-            <input type="text" name="pool" value="easyproxmox" disabled><br>
+            <br>&nbsp;<b>vmid</b><br>
+            &nbsp;<input type="text" name="vmid" value="{{newvmid}}" disabled><br>
+            <br>&nbsp;<b>Nombre</b><br>
+            &nbsp;<input type="text" name="name" autofocus="autofocus"><br>
+            <br>&nbsp;<b>Conjunto de recursos</b><br>
+            &nbsp;<input type="text" name="pool" value="easyproxmox" disabled><br>
             <br>
         </fieldset>
         <br>
@@ -25,7 +25,7 @@
                     key = ossys.keys()[0]
             %>
                 <br>
-                <input type="radio" name="ossytem" value="{{key}}">{{ossys[key]}}</input><br>
+                &nbsp;<input type="radio" name="ossytem" value="{{key}}">{{ossys[key]}}</input><br>
             % end
             <br>
         </fieldset>
@@ -33,7 +33,7 @@
         <fieldset>
             <legend>Unidad de CD</legend>
             <label for='isoimage'>Imagen ISO</label>
-            <br>
+            <br>&nbsp;
             <select id="isoimage" name="isoimage">
                 <option value="none">CD-Rom Vacío</option>
             <%
