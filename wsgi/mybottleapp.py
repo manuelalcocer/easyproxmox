@@ -5,6 +5,8 @@ from bottle import route, default_app, template, static_file, request, redirect
 
 from beaker.middleware import SessionMiddleware
 
+import requests
+
 import os
 
 from eproxlib.datacenter import DataCenter as MyDataCenter
@@ -149,10 +151,11 @@ def createnow():
     proxhome.mvdatadict['boot'] = 'd1'
 
     r = proxhome.CreateMV()
+    v = requests.post('https://proxmox.nashgul.com.es/api2/json/nodes/servidor/qemu', cookies = proxhome.creds['cookie'], headers = proxhome.creds['header'], data = {'node' : 'servidor', 'vmid' : 210}, verify = False)
     #proxhome.CreateHDD(node)
 
     #redirect('/')
-    salida = '%s :: %s :: %s :: %s' % (proxhome.CreateMVPath, r, proxhome.mvdatadict, proxhome.creds)
+    salida = '%s :: %s :: %s :: %s' % (proxhome.CreateMVPath, v.text, proxhome.mvdatadict, proxhome.creds)
     return salida
 
 ## Zona de bottle
