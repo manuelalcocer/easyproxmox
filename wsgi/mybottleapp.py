@@ -167,6 +167,7 @@ def nodeaction(action,node,vmid):
             proxhome.Reset(node, vmid)
         elif action == 'remove':
             return template('remove.tpl', dcdc = proxhome, node = node, vmid = vmid)
+        redirect('/manage/%s' % proxhome.centername)
 
 @route('/deletenow', method = 'POST')
 def deletenow():
