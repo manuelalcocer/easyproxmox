@@ -117,6 +117,7 @@ def createnow():
 
     # GENERAL
     node = request.forms.get('node')
+    proxhome.mvdatadict['name'] = request.forms.get('name')
     proxhome.mvdatadict['pool'] = request.forms.get('pool')
     proxhome.mvdatadict['vmid'] = int(request.forms.get('vmid'))
 
@@ -166,7 +167,7 @@ def nodeaction(action,node,vmid):
 @route('/deletenow', method = 'POST')
 def deletenow():
     if sislogin():
-        proxhome.sget('dc')
+        proxhome = sget('dc')
         node = request.forms.get('node')
         vmid = request.forms.get('vmid')
         proxhome.RemoveMV(node, vmid)
