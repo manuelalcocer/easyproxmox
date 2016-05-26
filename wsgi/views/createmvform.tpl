@@ -1,5 +1,5 @@
 % newvmid = 100
-% while newvmid in dcdc.mvdict.keys() and newvmid in dcdc.tpldict.keys():
+% while str(newvmid) in dcdc.mvdict.keys() and str(newvmid) in dcdc.tpldict.keys():
 %   newvmid = newvmid + 1
 % end
 <form action='/createnow' method="post">
