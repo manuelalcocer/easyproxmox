@@ -158,6 +158,11 @@ def createnow():
     salida = '%s :: %s :: %s :: %s' % (proxhome.CreateMVPath, v.text, proxhome.mvdatadict, proxhome.creds)
     return salida
 
+@route('/node/power/off/<node>/<vmid>')
+def poweroff(node,vmid):
+    if sislogin():
+        r = requests.post('https://proxmox.nashgul.com.es/api2/json/nodes/%/qemu/%s/status/stop' %(node, vmid), cookies = self.creds['cookie'], headers = self.creds['header'], verify = False)
+
 ## Zona de bottle
 @route('/static/<filepath:path>')
 def server_static(filepath):

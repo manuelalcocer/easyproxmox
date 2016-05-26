@@ -46,7 +46,8 @@ class DataCenter:
         return json_dict
 
     def MakePost(self, path, datadict):
-        r = requests.post('https://proxmox.nashgul.com.es/api2/json/nodes/servidor/qemu', cookies = self.creds['cookie'], headers = self.creds['header'], data = {'node' : 'servidor', 'vmid' : 210}, verify = False)
+        #r = requests.post('https://proxmox.nashgul.com.es/api2/json/nodes/servidor/qemu', cookies = self.creds['cookie'], headers = self.creds['header'], data = {'node' : 'servidor', 'vmid' : 210}, verify = False)
+        r = requests.post('https://proxmox.nashgul.com.es/api2/json/nodes/servidor/qemu', cookies = self.creds['cookie'], headers = self.creds['header'], verify = False)
         return r.text
 
     def FetchNodeMvs(self, node):
@@ -91,6 +92,11 @@ class DataCenter:
     def CreateHDD(self, node):
         hddcreatepath = self.api_root + '/nodes/' + node + '/storage/' + self.hdddatadict['storage'] + '/content'
         self.MakePost(hddcreatepath,self.hdddatadict)
+
+    def Poweroff(self, node, vmid):
+        self.PoweroffPath = self.api_root + '/nodes/' + node + '/qemu/' + vmid + '/status/stop'
+        r = self.MakePost(self.PoweroffPath)
+        return r
 
 def sset(key,value):
     s = request.environ.get('beaker.session')
