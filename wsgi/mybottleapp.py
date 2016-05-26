@@ -152,9 +152,8 @@ def createnow():
 
     h = proxhome.CreateHDD(node)
 
-
-
-    redirect('/manage/%s' % proxhome.centername)
+    # redirect('/manage/%s' % proxhome.centername)
+    return '%s :: %s ' % (r.text, h.text)
 
 @route('/node/action/<action>/<node>/<vmid>')
 def nodeaction(action,node,vmid):
