@@ -134,9 +134,9 @@ def createnow():
     proxhome.hdddatadict['vmid'] = proxhome.mvdatadict['vmid']
     proxhome.hdddatadict['format'] = 1
     hddtype = request.forms.get('hddtype')
-    if hddtype = 'sata':
+    if hddtype == 'sata':
         proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk' % proxhome.hdddatadict['filename']
-    elif hddtype = 'virtio':
+    elif hddtype == 'virtio':
         proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk' % proxhome.hdddatadict['filename']
     # CPU
     proxhome.mvdatadict['cores'] = int(request.forms.get('cores'))
