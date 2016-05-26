@@ -82,8 +82,8 @@ class DataCenter:
                 ret = str(round(float(size) / (24*3600),1)) + ' días'
                 return ret
 
-    def CreateMV(self, node):
-        CreateMVPath = self.api_root + '/nodes/' + node + '/qemu'
+    def CreateMV(self):
+        CreateMVPath = self.api_root + '/nodes/' + self.mvdatadict['node'] + '/qemu'
         self.MakePost(CreateMVPath, self.mvdatadict)
 
     def CreateHDD(self, node):
