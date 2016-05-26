@@ -32,7 +32,7 @@ class DataCenter:
         self.json_creds = loads(self.creds_response.text)
         self.creds['cookie'] = { 'PVEAuthCookie' : self.json_creds['data']['ticket'] }
         self.creds['header'] = { 'CSRFPreventionToken' : self.json_creds['data']['CSRFPreventionToken'] }
-        self.cookie = dict(PVEAuthCookie=self.json_creds['data']['ticket'])
+        #self.cookie = dict(PVEAuthCookie=self.json_creds['data']['ticket'])
 
     def FetchNodeList(self):
         self.NodePath = self.api_root + '/nodes'
