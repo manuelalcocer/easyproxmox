@@ -47,7 +47,7 @@ class DataCenter:
         return r
 
     def MakeDelete(self, path):
-        r = requests.delete(path)
+        r = requests.delete(path, cookies = self.creds['cookie'], headers = self.creds['header'])
         return r
 
     def FetchNodeMvs(self, node):
