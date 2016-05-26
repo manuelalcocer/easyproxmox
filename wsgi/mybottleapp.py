@@ -172,6 +172,8 @@ def deletenow():
         vmid = request.forms.get('vmid')
         proxhome.RemoveMV(node, vmid)
 
+        redirect('/manage/%s' % proxhome.centername)
+
 ## Zona de bottle
 @route('/static/<filepath:path>')
 def server_static(filepath):

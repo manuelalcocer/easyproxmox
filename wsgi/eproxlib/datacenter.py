@@ -109,7 +109,7 @@ class DataCenter:
         return r
 
     def RemoveMV(self, node, vmid):
-        self.RemoveMVPath = self.api_root + '/nodes/' + node + '/qemu' + vmid
+        self.RemoveMVPath = self.api_root + '/nodes/' + node + '/qemu/' + vmid
         r = self.MakeDelete(self.RemoveMVPath)
         return r
 
