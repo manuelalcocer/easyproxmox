@@ -4,7 +4,7 @@
 % end
 <form action='/createnow' method="post">
     <input type="hidden" name="node" value="{{node}}" />
-    <input type="hidden" name="datacenter" value="{{dcdc.datacenter}}" />
+    <input type="hidden" name="centername" value="{{dcdc.centername}}" />
     <input type="hidden" name="pool" value="easyproxmox" />
         <fieldset>
             <legend>General</legend>
