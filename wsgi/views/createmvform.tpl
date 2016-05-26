@@ -4,7 +4,6 @@
 % end
 <form action='/createnow' method="post">
     <input type="hidden" name="node" value="{{node}}" />
-    <input type="hidden" name="centername" value="{{dcdc.centername}}" />
     <input type="hidden" name="pool" value="easyproxmox" />
     <input type="hidden" name="vmid" value="{{newvmid}}" />
     <fieldset>

@@ -117,7 +117,6 @@ def createnow():
 
     # GENERAL
     node = request.forms.get('node')
-    centername = request.forms.get('centername')
     proxhome.mvdatadict['pool'] = request.forms.get('pool')
     proxhome.mvdatadict['vmid'] = int(request.forms.get('vmid'))
 
