@@ -153,6 +153,7 @@ def createnow():
 
     #redirect('/')
     salida = '%s :: %s' % (proxhome.mvdatadict, proxhome.creds)
+    return salida
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
