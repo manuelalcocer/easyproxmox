@@ -45,7 +45,7 @@
                     for iso in dcdc.isoslist:
                         if iso['content'] == 'iso' and iso['format'] == 'iso':
                 %>
-                        <option value="{{iso['volid']}}">{{iso['volid'][len('isos_rapidas:iso'):]}}</option>
+                        <option value="{{iso['volid']}}">{{iso['volid'][(len('isos_rapidas:iso')+1):]}}</option>
                 %       end
                 %   end
                 </select><br>
@@ -70,7 +70,7 @@
             <br>
                 &nbsp;<label for="cpu">Núcleos</label><br>
                 &nbsp;<select id="cpu" name="harddisk">
-                % for ncore in xrange(int(dcdc.nodestatusdict['cpuinfo']['cpus']) + 1):
+                % for ncore in xrange(1,int(dcdc.nodestatusdict['cpuinfo']['cpus']) + 1):
                     <option value="ncore">{{ncore}}</option>
                 % end
                 </select><br>
