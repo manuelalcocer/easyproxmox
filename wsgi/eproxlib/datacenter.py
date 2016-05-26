@@ -80,18 +80,6 @@ class DataCenter:
                 ret = str(round(float(size) / (24*3600),1)) + ' días'
                 return ret
 
-## zona de descarga de isos
-    def CheckURL(self, url):
-        p = urlparse(url)
-        conn = httplib.HTTPConnection(p.netloc)
-        conn.request('HEAD', p.path)
-        resp = conn.getresponse()
-        # True if full path exist, otherwise False
-        return resp.status < 400
-
-    def Downloadiso(self, url):
-        self.NodeStatusPath = self.api_root + '/nodes/' + node + '/execute'
-        datadict = { 'commands' : '/usr/local/bin/bajar %s' % url }
 
 def sset(key,value):
     s = request.environ.get('beaker.session')

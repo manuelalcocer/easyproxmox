@@ -33,6 +33,7 @@
         <fieldset>
             <legend>Unidad de CD</legend>
             <label for='isoimage'>Imagen ISO</label>
+            <br>
             <select id="isoimage" name="isoimage">
                 <option value="none">CD-Rom Vacío</option>
             <%
@@ -44,9 +45,6 @@
             %       end
             %   end
             </select>
-
+            <br>
         </fieldset>
 </form>
-        <form action="/downloadiso/{{node}}">
-            <input type="submit" value="Download ISO">
-        </form>
