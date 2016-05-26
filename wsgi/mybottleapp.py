@@ -129,13 +129,15 @@ def createnow():
 
     # HDD
     proxhome.hdddatadict['storage'] = 'easyproxmox'
-    proxhome.hdddatadict['size'] = request.forms.get('hddsize')
+    proxhome.hdddatadict['size'] = '%s+G' % request.forms.get('hddsize')
     proxhome.hdddatadict['filename'] = '%s-disk1.qcow2' % proxhome.mvdatadict['vmid']
     proxhome.hdddatadict['vmid'] = proxhome.mvdatadict['vmid']
+    proxhome.hdddatadict['format'] = 1
     hddtype = request.forms.get('hddtype')
-    #if hddtype = 'SATA':
-    #    proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk'
-
+    if hddtype = 'sata':
+        proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk' % proxhome.hdddatadict['filename']
+    elif hddtype = 'virtio':
+        proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk' % proxhome.hdddatadict['filename']
     # CPU
     proxhome.mvdatadict['cores'] = int(request.forms.get('cores'))
     proxhome.mvdatadict['sockets'] = 1
@@ -147,7 +149,10 @@ def createnow():
     proxhome.mvdatadict['net1'] = 'virtio,bridge=vmbr1'
 
     r = proxhome.CreateMV(node)
-    #proxhome.CreateHDD(node)
+
+    h = proxhome.CreateHDD(node)
+
+
 
     redirect('/manage/%s' % proxhome.centername)
 
