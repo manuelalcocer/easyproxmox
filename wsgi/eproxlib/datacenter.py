@@ -6,9 +6,6 @@ import os
 import psycopg2
 import requests
 
-import httplib
-from urlparse import urlparse
-
 class DataBase:
     def __init__(self, dbname):
         self.dbname = dbname

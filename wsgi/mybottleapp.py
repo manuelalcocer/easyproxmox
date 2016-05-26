@@ -151,7 +151,7 @@ def createnow():
     redirect('/manage/%s' % proxhome.centername)
 
 @route('/node/action/<action>/<node>/<vmid>')
-def poweroff(node,vmid):
+def nodeaction(action,node,vmid):
     if sislogin():
         proxhome = sget('dc')
         if action == 'poweron':
