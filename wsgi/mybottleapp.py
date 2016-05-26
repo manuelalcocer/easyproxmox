@@ -111,49 +111,48 @@ def createMV(centername, node):
 
 @route('/createnow', method = 'POST')
 def createnow():
-    if sislogin():
-        proxhome = sget('dc')
+    proxhome = sget('dc')
 
-        # GENERAL
-        proxhome.mvdatadict['node'] = request.forms.get('node')
-        centername = request.forms.get('centername')
-        proxhome.mvdatadict['pool'] = request.forms.get('pool')
-        proxhome.mvdatadict['vmid'] = int(request.forms.get('vmid'))
+    # GENERAL
+    proxhome.mvdatadict['node'] = request.forms.get('node')
+    centername = request.forms.get('centername')
+    proxhome.mvdatadict['pool'] = request.forms.get('pool')
+    proxhome.mvdatadict['vmid'] = int(request.forms.get('vmid'))
 
-        # OS
-        proxhome.mvdatadict['ostype'] = request.forms.get('ostype')
+    # OS
+    proxhome.mvdatadict['ostype'] = request.forms.get('ostype')
 
-        # CDROM
-        proxhome.mvdatadict['ide1'] = '%s, media=cdrom' % request.forms.get('volume')
+    # CDROM
+    proxhome.mvdatadict['ide1'] = '%s, media=cdrom' % request.forms.get('volume')
 
-        # HDD
-        proxhome.hdddatadict['storage'] = 'easyproxmox'
-        proxhome.hdddatadict['size'] = request.forms.get('hddsize')
-        proxhome.hdddatadict['filename'] = '%s-disk1.qcow2' % proxhome.mvdatadict['vmid']
-        proxhome.hdddatadict['vmid'] = proxhome.mvdatadict['vmid']
-        proxhome.hdddatadict['node'] = proxhome.mvdatadict['node']
-        hddtype = request.forms.get('hddtype')
-        #if hddtype = 'SATA':
-        #    proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk'
+    # HDD
+    proxhome.hdddatadict['storage'] = 'easyproxmox'
+    proxhome.hdddatadict['size'] = request.forms.get('hddsize')
+    proxhome.hdddatadict['filename'] = '%s-disk1.qcow2' % proxhome.mvdatadict['vmid']
+    proxhome.hdddatadict['vmid'] = proxhome.mvdatadict['vmid']
+    proxhome.hdddatadict['node'] = proxhome.mvdatadict['node']
+    hddtype = request.forms.get('hddtype')
+    #if hddtype = 'SATA':
+    #    proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk'
 
-        # CPU
-        proxhome.mvdatadict['cores'] = int(request.forms.get('cores'))
-        proxhome.mvdatadict['sockets'] = 1
+    # CPU
+    proxhome.mvdatadict['cores'] = int(request.forms.get('cores'))
+    proxhome.mvdatadict['sockets'] = 1
 
-        # MEM
-        proxhome.mvdatadict['memory'] = int(request.forms.get('memsize'))
+    # MEM
+    proxhome.mvdatadict['memory'] = int(request.forms.get('memsize'))
 
-        #NETWORK
-        proxhome.mvdatadict['net1'] = 'virtio=,bridge=vmbr1'
+    #NETWORK
+    proxhome.mvdatadict['net1'] = 'virtio=,bridge=vmbr1'
 
-        #EXTRAS
-        proxhome.mvdatadict['boot'] = 'd1'
+    #EXTRAS
+    proxhome.mvdatadict['boot'] = 'd1'
 
-        #proxhome.CreateMV()
-        #proxhome.CreateHDD(node)
+    #proxhome.CreateMV()
+    #proxhome.CreateHDD(node)
 
-        #redirect('/')
-        salida = '%s :: %s' % (proxhome.mvdatadict, proxhome.creds)
+    #redirect('/')
+    salida = '%s :: %s' % (proxhome.mvdatadict, proxhome.creds)
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
