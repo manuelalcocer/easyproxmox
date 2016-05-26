@@ -47,11 +47,11 @@ class DataCenter:
 
     def MakePost(self, path, datadict):
         r = requests.post(path, cookies = self.creds['cookie'], headers = self.creds['header'], data = datadict , verify = False)
-        return r.text
+        return r
 
     def MakeDelete(self, path)
         r = requests.delete(path)
-        return r.text
+        return r
 
     def FetchNodeMvs(self, node):
         self.MvPath = self.api_root + '/nodes/' + node + '/qemu'
@@ -109,6 +109,11 @@ class DataCenter:
     def Reset(self, node, vmid):
         self.PoweronPath = self.api_root + '/nodes/' + node + '/qemu/' + vmid + '/status/reset'
         r = self.MakePost(self.PoweronPath, None)
+        return r
+
+    def RemoveMV(self, node, vmid):
+        self.RemoveMVPath = self.api_root + '/nodes/' + node + '/qemu' + vmid
+        r = self.MakeDelete(self.RemoveMVPath)
         return r
 
 def sset(key,value):

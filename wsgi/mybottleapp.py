@@ -165,7 +165,11 @@ def poweroff(node,vmid):
 
 @route('/deletenow', method = 'POST')
 def deletenow():
-
+    if sislogin():
+        proxhome.sget('dc')
+        node = request.forms.get('node')
+        vmid = request.forms.get('vmid')
+        proxhome.RemoveMV(node, vmid)
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
