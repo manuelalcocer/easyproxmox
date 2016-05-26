@@ -1,4 +1,4 @@
-% newvmid = 100
+% newvmid = 200
 % while str(newvmid) in dcdc.mvdict.keys() and str(newvmid) in dcdc.tpldict.keys():
 %   newvmid = newvmid + 1
 % end
