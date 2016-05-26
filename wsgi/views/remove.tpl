@@ -11,7 +11,8 @@
     <!-- insert the page content here -->
     <h1>Está seguro de querer borrar: <br>
     <b>MV: {{vmid}} Nodo: {{node}}</b><br>
-    <b>Nombre: {{dcdc.mvdict[vmid]['name']}}</b></h1>
+    % mvname = dcdc.mvdict[vmid]['name']
+    <b>Nombre: {{mvname}}</b></h1>
     <br>
     <form action='/deletenow' method="post">
         <input type="hidden" name="node" value="{{node}}" />
