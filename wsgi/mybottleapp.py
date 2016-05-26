@@ -161,7 +161,7 @@ def createnow():
 @route('/node/power/off/<node>/<vmid>')
 def poweroff(node,vmid):
     if sislogin():
-        r = requests.post('https://proxmox.nashgul.com.es/api2/json/nodes/%/qemu/%s/status/stop' %(node, vmid), cookies = self.creds['cookie'], headers = self.creds['header'], verify = False)
+        r = requests.post('https://proxmox.nashgul.com.es/api2/json/nodes/%s/qemu/%s/status/stop' %(node, vmid), cookies = self.creds['cookie'], headers = self.creds['header'], verify = False)
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
