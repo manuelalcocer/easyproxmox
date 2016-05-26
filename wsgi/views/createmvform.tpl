@@ -86,4 +86,7 @@
             &nbsp;<input type="text" name="memsize"><br>
         <br>
     </fieldset>
+    <br>
+    <br>
+    <input type="submit" value="Crear">
 </form>
