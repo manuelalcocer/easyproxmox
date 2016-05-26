@@ -49,6 +49,10 @@ class DataCenter:
         r = requests.post(path, cookies = self.creds['cookie'], headers = self.creds['header'], data = datadict , verify = False)
         return r.text
 
+    def MakeDelete(self, path)
+        r = requests.delete(path)
+        return r.text
+
     def FetchNodeMvs(self, node):
         self.MvPath = self.api_root + '/nodes/' + node + '/qemu'
         self.json_mvdict = loads(requests.get(self.MvPath, cookies = self.creds['cookie'], verify = False).text)
@@ -95,6 +99,16 @@ class DataCenter:
     def Poweroff(self, node, vmid):
         self.PoweroffPath = self.api_root + '/nodes/' + node + '/qemu/' + vmid + '/status/stop'
         r = self.MakePost(self.PoweroffPath, None)
+        return r
+
+    def Poweron(self, node, vmid):
+        self.PoweronPath = self.api_root + '/nodes/' + node + '/qemu/' + vmid + '/status/start'
+        r = self.MakePost(self.PoweronPath, None)
+        return r
+
+    def Reset(self, node, vmid):
+        self.PoweronPath = self.api_root + '/nodes/' + node + '/qemu/' + vmid + '/status/reset'
+        r = self.MakePost(self.PoweronPath, None)
         return r
 
 def sset(key,value):

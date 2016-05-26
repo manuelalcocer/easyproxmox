@@ -148,15 +148,24 @@ def createnow():
     r = proxhome.CreateMV(node)
     #proxhome.CreateHDD(node)
 
-    #redirect('/')
-    salida = '%s :: %s :: %s :: %s' % (proxhome.CreateMVPath, r, proxhome.mvdatadict, proxhome.creds)
-    return salida
+    redirect('/manage/%s' % proxhome.centername)
 
-@route('/node/power/off/<node>/<vmid>')
+@route('/node/action/<action>/<node>/<vmid>')
 def poweroff(node,vmid):
     if sislogin():
         proxhome = sget('dc')
-        r = requests.post('https://proxmox.nashgul.com.es/api2/json/nodes/%s/qemu/%s/status/stop' %(node, vmid), cookies = proxhome.creds['cookie'], headers = proxhome.creds['header'], verify = False)
+        if action == 'poweron':
+            proxhome.Poweron(node, vmid)
+        elif action == 'poweroff':
+            proxhome.Poweroff(node, vmid)
+        elif action == 'reset':
+            proxhome.Reset(node, vmid)
+        elif action == 'remove':
+            return template('remove.tpl', dcdc = proxhome, node = node, vmid = vmid)
+
+@route('/deletenow', method = 'POST')
+def deletenow():
+
 
 ## Zona de bottle
 @route('/static/<filepath:path>')

@@ -30,20 +30,22 @@
                     <td>{{dcdc.mvdict[key]['name']}}</td>
                     <td>{{dcdc.mvdict[key]['status']}}</td>
                     <td align="center">
-                        &nbsp
+                        &nbsp;
                         % if dcdc.mvdict[key]['status'] == 'stopped':
-                            <a href="/node/power/on/{{node['node']}}/{{dcdc.mvdict[key]['vmid']}}">
+                            <a href="/node/action/poweron/{{node['node']}}/{{dcdc.mvdict[key]['vmid']}}">
                                 <img src="/static/proyecto/style/icon-poweron.png" alt="Encender" title="Encender"/></a>
+                            &nbsp;&nbsp;
                             <a href="/node/convert2tpl/{{dcdc.centername}}/{{dcdc.mvdict[key]['vmid']}}">
                                 <img src="/static/proyecto/style/icon-conv2tpl.png" alt="Convertir a plantilla" title="Convertir a plantilla"/></a>
                         % else:
-                            <a href="/node/reset/{{node['node']}}/{{dcdc.mvdict[key]['vmid']}}">
+                            <a href="/node/action/reset/{{node['node']}}/{{dcdc.mvdict[key]['vmid']}}">
                                 <img src="/static/proyecto/style/icon-reset.png" alt="Resetear" title="Resetear"/></a>
-                            <a href="/node/power/off/{{node['node']}}/{{dcdc.mvdict[key]['vmid']}}">
+                            &nbsp;&nbsp;
+                            <a href="/node/action/poweroff/{{node['node']}}/{{dcdc.mvdict[key]['vmid']}}">
                                 <img src="/static/proyecto/style/icon-poweroff.png" alt="Apagado brusco" title="Apagado brusco"/></a>
                         % end
-                        &nbsp
-                        <a href="/node/deleteMV/{{node['node']}}/{{dcdc.mvdict[key]['vmid']}}">
+                        &nbsp;
+                        <a href="/node/action/remove/{{node['node']}}/{{dcdc.mvdict[key]['vmid']}}">
                                 <img src="/static/proyecto/style/icon-remove.png" alt="Eliminar Máquina" title="Eliminar Máquina"/></a>
                     </td>
                 </tr>
