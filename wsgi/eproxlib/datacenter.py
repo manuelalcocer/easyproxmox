@@ -46,7 +46,8 @@ class DataCenter:
         return json_dict
 
     def MakePost(self, path, datadict):
-        requests.post(path, cookies = self.creds['cookie'], headers = self.creds['header'], data = {'node' : 'servidor', 'vmid' : 210}, verify = False)
+        r = requests.post(path, cookies = self.creds['cookie'], headers = self.creds['header'], data = {'node' : 'servidor', 'vmid' : 210}, verify = False)
+        return r
 
     def FetchNodeMvs(self, node):
         self.MvPath = self.api_root + '/nodes/' + node + '/qemu'
@@ -84,7 +85,8 @@ class DataCenter:
 
     def CreateMV(self):
         CreateMVPath = self.api_root + '/nodes/' + self.mvdatadict['node'] + '/qemu'
-        self.MakePost(CreateMVPath, self.mvdatadict)
+        r = self.MakePost(CreateMVPath, self.mvdatadict)
+        return r
 
     def CreateHDD(self, node):
         hddcreatepath = self.api_root + '/nodes/' + node + '/storage/' + self.hdddatadict['storage'] + '/content'

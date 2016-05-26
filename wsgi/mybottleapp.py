@@ -148,11 +148,11 @@ def createnow():
     #EXTRAS
     proxhome.mvdatadict['boot'] = 'd1'
 
-    #proxhome.CreateMV()
+     r = proxhome.CreateMV()
     #proxhome.CreateHDD(node)
 
     #redirect('/')
-    salida = '%s :: %s' % (proxhome.mvdatadict, proxhome.creds)
+    salida = '%s :: %s :: %s' % (r, proxhome.mvdatadict, proxhome.creds)
     return salida
 
 ## Zona de bottle
