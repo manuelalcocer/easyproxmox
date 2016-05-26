@@ -90,8 +90,8 @@ class DataCenter:
         return r
 
     def CreateHDD(self, node):
-        hddcreatepath = self.api_root + '/nodes/' + node + '/storage/' + self.hdddatadict['storage'] + '/content'
-        r = self.MakePost(hddcreatepath, self.hdddatadict)
+        self.hddcreatepath = self.api_root + '/nodes/' + node + '/storage/' + self.hdddatadict['storage'] + '/content'
+        r = self.MakePost(self.hddcreatepath, self.hdddatadict)
         return r
 
     def Poweroff(self, node, vmid):

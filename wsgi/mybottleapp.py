@@ -134,10 +134,10 @@ def createnow():
     proxhome.hdddatadict['vmid'] = proxhome.mvdatadict['vmid']
     proxhome.hdddatadict['format'] = 1
     hddtype = request.forms.get('hddtype')
-    if hddtype == 'sata':
-        proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk' % proxhome.hdddatadict['filename']
-    elif hddtype == 'virtio':
-        proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk' % proxhome.hdddatadict['filename']
+    #if hddtype == 'sata':
+    #    proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk' % proxhome.hdddatadict['filename']
+    #elif hddtype == 'virtio':
+    #    proxhome.mvdatadict['virtio1'] = 'volume=%s,media=disk' % proxhome.hdddatadict['filename']
     # CPU
     proxhome.mvdatadict['cores'] = int(request.forms.get('cores'))
     proxhome.mvdatadict['sockets'] = 1
@@ -153,7 +153,7 @@ def createnow():
     h = proxhome.CreateHDD(node)
 
     # redirect('/manage/%s' % proxhome.centername)
-    return '%s :: %s ' % (r.text, h.text)
+    return '%s :: %s :: %s' % (r.text, h.text, proxhome.hdddatadict)
 
 @route('/node/action/<action>/<node>/<vmid>')
 def nodeaction(action,node,vmid):
