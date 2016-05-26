@@ -43,11 +43,11 @@ class DataCenter:
         return json_dict
 
     def MakePost(self, path, datadict):
-        r = requests.post(path, cookies = self.creds['cookie'], headers = self.creds['header'], data = datadict , verify = False)
+        r = requests.post(path, cookies = self.creds['cookie'], headers = self.creds['header'], data = datadict, verify = False)
         return r
 
     def MakeDelete(self, path):
-        r = requests.delete(path, cookies = self.creds['cookie'], headers = self.creds['header'])
+        r = requests.delete(path, cookies = self.creds['cookie'], headers = self.creds['header'], verify = False)
         return r
 
     def FetchNodeMvs(self, node):
