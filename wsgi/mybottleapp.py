@@ -148,7 +148,7 @@ def createnow():
     #EXTRAS
     proxhome.mvdatadict['boot'] = 'd1'
 
-     r = proxhome.CreateMV()
+    r = proxhome.CreateMV()
     #proxhome.CreateHDD(node)
 
     #redirect('/')

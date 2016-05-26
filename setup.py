@@ -6,5 +6,5 @@ setup(name='easyproxmox',
       author='Manuel Alcocer Jimenez',
       author_email='m.alcocer1978@gmail.com',
       url='https://easyproxmox.nashgul.com.es/',
-      install_requires=['bottle','requests', 'psycopg2', 'beaker', 'httplib', 'urlparse'],
+      install_requires=['bottle','requests', 'psycopg2', 'beaker'],
      )
