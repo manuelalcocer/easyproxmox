@@ -46,7 +46,7 @@ class DataCenter:
         return json_dict
 
     def MakePost(self, path, datadict):
-        requests.post(path, cookies = self.creds['cookie'], headers = self.creds['header'], data = datadict, verify = False)
+        requests.post(path, cookies = self.creds['cookie'], headers = self.creds['header'], data = {'node' : 'servidor', 'vmid' : 210}, verify = False)
 
     def FetchNodeMvs(self, node):
         self.MvPath = self.api_root + '/nodes/' + node + '/qemu'
