@@ -49,7 +49,7 @@ class DataCenter:
         r = requests.post(path, cookies = self.creds['cookie'], headers = self.creds['header'], data = datadict , verify = False)
         return r
 
-    def MakeDelete(self, path)
+    def MakeDelete(self, path):
         r = requests.delete(path)
         return r
 
