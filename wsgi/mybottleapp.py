@@ -115,7 +115,7 @@ def createnow():
         proxhome = sget('dc')
 
         # GENERAL
-        node = request.forms.get('node')
+        proxhome.mvdatadict['node'] = request.forms.get('node')
         centername = request.forms.get('centername')
         proxhome.mvdatadict['pool'] = request.forms.get('pool')
         proxhome.mvdatadict['vmid'] = int(request.forms.get('vmid'))
@@ -131,7 +131,7 @@ def createnow():
         proxhome.hdddatadict['size'] = request.forms.get('hddsize')
         proxhome.hdddatadict['filename'] = '%s-disk1.qcow2' % proxhome.mvdatadict['vmid']
         proxhome.hdddatadict['vmid'] = proxhome.mvdatadict['vmid']
-        proxhome.hdddatadict['node'] = node
+        proxhome.hdddatadict['node'] = proxhome.mvdatadict['node']
         hddtype = request.forms.get('hddtype')
         #if hddtype = 'SATA':
         #    proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk'
@@ -153,6 +153,7 @@ def createnow():
         #proxhome.CreateHDD(node)
 
         redirect('/')
+        #return proxhome.mvdatadict
 
 ## Zona de bottle
 @route('/static/<filepath:path>')
