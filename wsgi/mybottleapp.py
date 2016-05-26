@@ -116,7 +116,7 @@ def createnow():
     proxhome = sget('dc')
 
     # GENERAL
-    proxhome.mvdatadict['node'] = request.forms.get('node')
+    node = request.forms.get('node')
     centername = request.forms.get('centername')
     proxhome.mvdatadict['pool'] = request.forms.get('pool')
     proxhome.mvdatadict['vmid'] = int(request.forms.get('vmid'))
@@ -132,7 +132,6 @@ def createnow():
     proxhome.hdddatadict['size'] = request.forms.get('hddsize')
     proxhome.hdddatadict['filename'] = '%s-disk1.qcow2' % proxhome.mvdatadict['vmid']
     proxhome.hdddatadict['vmid'] = proxhome.mvdatadict['vmid']
-    proxhome.hdddatadict['node'] = proxhome.mvdatadict['node']
     hddtype = request.forms.get('hddtype')
     #if hddtype = 'SATA':
     #    proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk'
@@ -150,8 +149,8 @@ def createnow():
     #EXTRAS
     proxhome.mvdatadict['boot'] = 'd1'
 
-    r = proxhome.CreateMV()
-    v = requests.post('https://proxmox.nashgul.com.es/api2/json/nodes/servidor/qemu', cookies = proxhome.creds['cookie'], headers = proxhome.creds['header'], data = {'node' : 'servidor', 'vmid' : 210}, verify = False)
+    #r = proxhome.CreateMV()
+    v = requests.post('https://proxmox.nashgul.com.es/api2/json/nodes/servidor/qemu', cookies = proxhome.creds['cookie'], headers = proxhome.creds['header'], data = { 'vmid' : 210 }, verify = False)
     #proxhome.CreateHDD(node)
 
     #redirect('/')
