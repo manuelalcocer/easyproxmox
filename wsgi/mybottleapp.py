@@ -148,8 +148,7 @@ def createnow():
     #EXTRAS
     proxhome.mvdatadict['boot'] = 'd1'
 
-    r = proxhome.CreateMV()
-    v = requests.post('https://proxmox.nashgul.com.es/api2/json/nodes/servidor/qemu', cookies = proxhome.creds['cookie'], headers = proxhome.creds['header'], data = { 'vmid' : 210 }, verify = False)
+    r = proxhome.CreateMV(node)
     #proxhome.CreateHDD(node)
 
     #redirect('/')
