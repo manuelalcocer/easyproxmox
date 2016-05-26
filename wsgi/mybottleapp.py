@@ -35,7 +35,7 @@ def login(centername):
 
 @route('/FetchCreds/<centername>', method='POST')
 def FetchCreds(centername):
-    datacenter = Mydb.InfoCenter(sget('db'), centername=centername)
+    datacenter = Mydb.InfoCenter(sget('db'), centername = centername)
     proxhome = MyDataCenter(datacenter[0])
     proxhome.https_url = datacenter[1]
     proxhome.port = datacenter[2]
@@ -109,6 +109,48 @@ def createMV(centername, node):
         sset('lastpage', '/node/createMV')
         redirect('/login/%s' % centername)
 
+@route('/createnow', method = 'POST')
+def createnow():
+    if sislogin():
+        proxhome = sget('dc')
+
+        # GENERAL
+        node = request.forms.get('node')
+        centername = request.forms.get('centername')
+        proxhome.mvdatadict['pool'] = request.forms.get('pool')
+        proxhome.mvdatadict['vmid'] = int(request.forms.get('vmid'))
+
+        # OS
+        proxhome.mvdatadict['ostype'] = request.forms.get('ostype')
+
+        # CDROM
+        proxhome.mvdatadict['ide1'] = '%s, media=cdrom' % request.forms.get('volume')
+
+        # HDD
+        proxhome.hdddatadict['storage'] = 'easyproxmox'
+        proxhome.hdddatadict['size'] = request.forms.get('hddsize')
+        proxhome.hdddatadict['filename'] = '%s-disk1.qcow2' % proxhome.mvdatadict['vmid']
+        proxhome.hdddatadict['vmid'] = proxhome.mvdatadict['vmid']
+        proxhome.hdddatadict['node'] = node
+        hddtype = request.forms.get('hddtype')
+        if hddtype = 'SATA':
+            proxhome.mvdatadict['sata1'] = 'volume=%s,media=disk'
+
+        # CPU
+        proxhome.mvdatadict['cores'] = int(request.forms.get('cores'))
+        proxhome.mvdatadict['sockets'] = 1
+
+        # MEM
+        proxhome.mvdatadict['memory'] = int(request.forms.get('memsize'))
+
+        #NETWORK
+        proxhome.mvdatadict['net1'] = 'virtio=,bridge=vmbr1'
+
+        #EXTRAS
+        proxhome.mvdatadict['boot'] = 'd1'
+
+        proxhome.CreateMV(node)
+        proxhome.CreateHDD(node)
 
 ## Zona de bottle
 @route('/static/<filepath:path>')

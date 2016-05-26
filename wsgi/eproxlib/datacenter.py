@@ -25,6 +25,8 @@ class DataCenter:
         self.api_address = '/api2/json'
         self.api_ticket = '/access/ticket'
         self.creds = {}
+        self.mvdatadict = {}
+        self.hdddatadict = {}
 
     def FetchCreds(self, **kwargs):
         parameters_list = { 'username' : kwargs['username'] + '@pam', 'password' : kwargs['password'] }
@@ -80,6 +82,13 @@ class DataCenter:
                 ret = str(round(float(size) / (24*3600),1)) + ' días'
                 return ret
 
+    def CreateMV(self, node):
+        CreateMVPath = self.api_root + '/nodes/' + node + '/qemu'
+        self.MakePost(CreateMVPath, self.mvdatadict)
+
+    def CreateHDD(self, node):
+        hddcreatepath = self.api_root + '/nodes/' + node + '/storage/' + self.hdddatadict['storage'] + '/content'
+        self.MakePost(hddcreatepath,self.hdddatadict)
 
 def sset(key,value):
     s = request.environ.get('beaker.session')
