@@ -73,7 +73,7 @@
             &nbsp;<label for="cpu"><b>Núcleos</b></label><br>
             &nbsp;<select id="cpu" name="cores">
             % for ncore in xrange(1,int(dcdc.nodestatusdict['cpuinfo']['cpus']) + 1):
-                <option value="ncore">{{ncore}}</option>
+                <option value="{{ncore}}">{{ncore}}</option>
             % end
             </select><br>
         <br>
