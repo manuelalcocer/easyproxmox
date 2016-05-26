@@ -84,8 +84,8 @@ class DataCenter:
                 return ret
 
     def CreateMV(self):
-        CreateMVPath = self.api_root + '/nodes/' + self.mvdatadict['node'] + '/qemu'
-        r = self.MakePost(CreateMVPath, self.mvdatadict)
+        self.CreateMVPath = self.api_root + '/nodes/' + self.mvdatadict['node'] + '/qemu'
+        r = self.MakePost(self.CreateMVPath, self.mvdatadict)
         return r
 
     def CreateHDD(self, node):

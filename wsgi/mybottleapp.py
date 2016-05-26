@@ -152,7 +152,7 @@ def createnow():
     #proxhome.CreateHDD(node)
 
     #redirect('/')
-    salida = '%s :: %s :: %s' % (r, proxhome.mvdatadict, proxhome.creds)
+    salida = '%s :: %s :: %s :: %s' % (proxhome.CreateMVPath, r, proxhome.mvdatadict, proxhome.creds)
     return salida
 
 ## Zona de bottle
