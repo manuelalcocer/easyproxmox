@@ -90,7 +90,7 @@ def manage(centername):
         proxhome = sget('dc')
         return template('manage.tpl', dcdc = proxhome)
     else:
-        sset('lastpage', '/manage')
+        sset('returnpage', '/manage')
         redirect('/login/%s' % centername)
 
 @route('/node/MV/<centername>')
@@ -152,8 +152,8 @@ def createnow():
 
     h = proxhome.CreateHDD(node)
 
-    # redirect('/manage/%s' % proxhome.centername)
-    return '%s :: %s :: %s' % (r.text, h.text, proxhome.hdddatadict)
+    redirect('/manage/%s' % proxhome.centername)
+    #return '%s :: %s :: %s' % (r.text, h.text, proxhome.hdddatadict)
 
 @route('/node/action/<action>/<node>/<vmid>')
 def nodeaction(action,node,vmid):
