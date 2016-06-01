@@ -19,6 +19,7 @@
             <input type="submit" value="Enviar">
     </form>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="{{googleapikey}}">
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </div>
 </div>
